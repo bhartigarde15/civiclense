@@ -5,6 +5,7 @@ import { PriorityService } from '../priority/priority.service';
 import { DuplicateService } from '../duplicate/duplicate.service';
 import { BigQueryService } from '../bigquery/bigquery.service';
 import { CreateComplaintDto } from './dto/create-complaint.dto';
+import { UpdateComplaintStatusDto } from './dto/update-complaint-status.dto';
 import { ComplaintSubmissionResponse } from './interfaces/complaint-response.interface';
 import { ComplaintRecord } from '../bigquery/bigquery.interface';
 
@@ -113,6 +114,15 @@ export class ComplaintsService {
       throw new NotFoundException(`Complaint with ID '${id}' not found.`);
     }
     return complaint;
+  }
+
+  async updateComplaintStatus(
+    id: string,
+    dto: UpdateComplaintStatusDto,
+  ): Promise<ComplaintRecord> {
+    const complaint = await this.getComplaintById(id);
+    await this.bigQueryService.updateComplaintStatus(id, dto.status);
+    return { ...complaint, status: dto.status };
   }
 
   async getComplaintImage(id: string): Promise<{ data: Buffer; contentType: string }> {

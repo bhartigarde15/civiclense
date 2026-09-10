@@ -25,6 +25,109 @@ function applyTheme(theme, persist = true) {
 
 document.addEventListener('DOMContentLoaded', initializeTheme);
 
+const DEFAULT_MAP_CENTER = { lat: 28.5355, lng: 77.391 };
+let googleMap;
+let googleMapMarker;
+let googleMapGeocoder;
+
+document.addEventListener('DOMContentLoaded', initializeLocationPicker);
+
+async function initializeLocationPicker() {
+  const locationInput = document.getElementById('locationName');
+  const locateButton = document.getElementById('useMyLocation');
+  if (!locationInput || !locateButton) return;
+
+  locationInput.addEventListener('change', () => geocodeLocationName(locationInput.value));
+  locateButton.addEventListener('click', useCurrentLocation);
+
+  try {
+    const response = await fetch(`${API_BASE}/api/config/maps`);
+    const { googleMapsApiKey } = response.ok ? await response.json() : {};
+    if (!googleMapsApiKey) throw new Error('Google Maps API key is not configured');
+    await loadGoogleMapsApi(googleMapsApiKey);
+    createGoogleMap();
+  } catch (_) {
+    showMapFallback();
+  }
+}
+
+function loadGoogleMapsApi(apiKey) {
+  if (window.google?.maps) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places`;
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error('Google Maps could not be loaded'));
+    document.head.appendChild(script);
+  });
+}
+
+function createGoogleMap() {
+  const mapElement = document.getElementById('locationMap');
+  const input = document.getElementById('locationName');
+  if (!mapElement || !input) return;
+
+  mapElement.innerHTML = '';
+  googleMap = new google.maps.Map(mapElement, { center: DEFAULT_MAP_CENTER, zoom: 14, mapTypeControl: false, streetViewControl: false });
+  googleMapGeocoder = new google.maps.Geocoder();
+  googleMap.addListener('click', (event) => setMapLocation(event.latLng.lat(), event.latLng.lng()));
+
+  const autocomplete = new google.maps.places.Autocomplete(input, { fields: ['formatted_address', 'geometry', 'name'] });
+  autocomplete.addListener('place_changed', () => {
+    const place = autocomplete.getPlace();
+    if (!place.geometry?.location) return;
+    input.value = place.formatted_address || place.name || input.value;
+    setMapLocation(place.geometry.location.lat(), place.geometry.location.lng(), input.value, false);
+  });
+}
+
+function setMapLocation(latitude, longitude, locationName, reverseGeocode = true) {
+  document.getElementById('latitude').value = Number(latitude).toFixed(6);
+  document.getElementById('longitude').value = Number(longitude).toFixed(6);
+  const position = { lat: Number(latitude), lng: Number(longitude) };
+
+  if (googleMap) {
+    googleMap.panTo(position);
+    googleMap.setZoom(Math.max(googleMap.getZoom() || 0, 16));
+    if (!googleMapMarker) googleMapMarker = new google.maps.Marker({ map: googleMap });
+    googleMapMarker.setPosition(position);
+  }
+
+  if (locationName) document.getElementById('locationName').value = locationName;
+  if (reverseGeocode && googleMapGeocoder) {
+    googleMapGeocoder.geocode({ location: position }, (results, status) => {
+      if (status === 'OK' && results?.[0]) document.getElementById('locationName').value = results[0].formatted_address;
+    });
+  }
+}
+
+function geocodeLocationName(locationName) {
+  if (!locationName || !googleMapGeocoder) return;
+  googleMapGeocoder.geocode({ address: locationName }, (results, status) => {
+    if (status === 'OK' && results?.[0]?.geometry?.location) {
+      const point = results[0].geometry.location;
+      setMapLocation(point.lat(), point.lng(), results[0].formatted_address, false);
+    }
+  });
+}
+
+function useCurrentLocation() {
+  if (!navigator.geolocation) return alert('Your browser does not support location services.');
+  navigator.geolocation.getCurrentPosition(
+    ({ coords }) => setMapLocation(coords.latitude, coords.longitude),
+    () => alert('Location access was not granted. Please search or drop a pin on the map.'),
+    { enableHighAccuracy: true, timeout: 10000 },
+  );
+}
+
+function showMapFallback() {
+  const mapElement = document.getElementById('locationMap');
+  const help = document.getElementById('locationHelp');
+  if (mapElement) mapElement.innerHTML = '<div class="location-map-empty">Google Maps needs a configured API key. You can still enter a location and coordinates will be resolved when Maps is enabled.</div>';
+  if (help) help.textContent = 'Set GOOGLE_MAPS_API_KEY to enable address search, pin dropping, and current-location selection.';
+}
+
 // Preset Scenarios for Rapid Hackathon Demonstrations
 const DEMO_SCENARIOS = {
   garbage: {
@@ -73,6 +176,7 @@ function fillScenario(key) {
   document.getElementById('latitude').value = scenario.latitude;
   document.getElementById('longitude').value = scenario.longitude;
   document.getElementById('affectedPeople').value = scenario.affectedPeople;
+  setMapLocation(scenario.latitude, scenario.longitude, scenario.locationName, false);
 }
 
 function handleFileSelected(event) {
@@ -488,7 +592,7 @@ function renderComplaintsTable() {
   const pageComplaints = complaints.slice(startIndex, startIndex + complaintQueueState.pageSize);
 
   if (complaints.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color: var(--gray-mid);">No complaints currently in queue.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="10" style="text-align:center; color: var(--gray-mid);">No complaints currently in queue.</td></tr>`;
     renderComplaintPagination(0, 0, 0);
     return;
   }
@@ -518,7 +622,12 @@ function renderComplaintsTable() {
         <td>${c.location_name}</td>
         <td><strong style="color: ${scoreColor}; font-size: 0.95rem;">${c.priority_score}</strong>/100</td>
         <td>${c.duplicate_count > 0 ? `<span style="color:#c53929; font-weight:700;">${c.duplicate_count}</span>` : '0'}</td>
-        <td><span class="badge badge-low">${c.status || 'OPEN'}</span></td>
+        <td><span class="badge ${getStatusBadgeClass(c.status)}">${formatComplaintStatus(c.status)}</span></td>
+        <td>
+          <select class="complaint-status-select" data-complaint-id="${escapeHtml(c.complaint_id)}" onchange="updateComplaintStatus(this)" aria-label="Update status for complaint ${escapeHtml(c.complaint_id)}">
+            ${['OPEN', 'IN_PROGRESS', 'CLOSED'].map((status) => `<option value="${status}" ${status === (c.status || 'OPEN') ? 'selected' : ''}>${formatComplaintStatus(status)}</option>`).join('')}
+          </select>
+        </td>
         <td>${imageCell}</td>
         <td style="font-size: 0.8rem; color: var(--gray-mid);">${dateStr}</td>
       </tr>
@@ -527,6 +636,51 @@ function renderComplaintsTable() {
     .join('');
 
   renderComplaintPagination(complaints.length, totalPages, startIndex);
+}
+
+function formatComplaintStatus(status) {
+  return String(status || 'OPEN').replace('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function getStatusBadgeClass(status) {
+  if (status === 'CLOSED') return 'badge-low';
+  if (status === 'IN_PROGRESS') return 'badge-medium';
+  return 'badge-high';
+}
+
+async function updateComplaintStatus(select) {
+  const complaintId = select.dataset.complaintId;
+  const status = select.value;
+  const token = localStorage.getItem('civiclens_auth_token');
+  if (!complaintId || !token) return;
+
+  const previousStatus = allDashboardComplaints.find((complaint) => complaint.complaint_id === complaintId)?.status || 'OPEN';
+  select.disabled = true;
+
+  try {
+    const response = await fetch(`${API_BASE}/api/complaints/${encodeURIComponent(complaintId)}/status`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ status }),
+    });
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.message || 'Unable to update complaint status');
+    }
+
+    const complaint = allDashboardComplaints.find((item) => item.complaint_id === complaintId);
+    if (complaint) complaint.status = status;
+    populateComplaintStatusFilter();
+    renderComplaintsTable();
+  } catch (error) {
+    select.value = previousStatus;
+    alert(error.message);
+  } finally {
+    select.disabled = false;
+  }
 }
 
 function getComplaintImageUrl(imageUrl, complaintId) {
@@ -564,12 +718,22 @@ function sortComplaintsTable() {
   renderComplaintsTable();
 }
 
+function sortComplaintsByCreatedAt() {
+  const sortSelect = document.getElementById('complaintSortSelect');
+  if (!sortSelect) return;
+
+  sortSelect.value = sortSelect.value === 'newest' ? 'oldest' : 'newest';
+  complaintQueueState.page = 1;
+  renderComplaintsTable();
+}
+
 function getFilteredAndSortedComplaints() {
   const query = document.getElementById('complaintFilterInput')?.value.trim().toLowerCase() || '';
   const category = document.getElementById('complaintCategoryFilter')?.value || '';
   const severity = document.getElementById('complaintSeverityFilter')?.value || '';
   const status = document.getElementById('complaintStatusFilter')?.value || '';
-  const sort = document.getElementById('complaintSortSelect')?.value || 'priority-desc';
+  const sort = document.getElementById('complaintSortSelect')?.value || 'newest';
+  updateCreatedAtSortIndicator(sort);
 
   const filtered = allDashboardComplaints.filter(
     (c) =>
@@ -601,6 +765,23 @@ function getFilteredAndSortedComplaints() {
   });
 }
 
+function updateCreatedAtSortIndicator(sort) {
+  const header = document.getElementById('createdAtHeader');
+  const button = document.getElementById('createdAtSortButton');
+  if (!header || !button) return;
+
+  if (sort === 'newest') {
+    header.setAttribute('aria-sort', 'descending');
+    button.innerHTML = 'Created <span aria-hidden="true">↓</span>';
+  } else if (sort === 'oldest') {
+    header.setAttribute('aria-sort', 'ascending');
+    button.innerHTML = 'Created <span aria-hidden="true">↑</span>';
+  } else {
+    header.setAttribute('aria-sort', 'none');
+    button.innerHTML = 'Created <span aria-hidden="true">↕</span>';
+  }
+}
+
 function populateComplaintCategoryFilter() {
   const select = document.getElementById('complaintCategoryFilter');
   if (!select) return;
@@ -620,7 +801,7 @@ function populateComplaintStatusFilter() {
   const selectedStatus = select.value;
   const statuses = [...new Set(allDashboardComplaints.map((c) => c.status || 'OPEN'))].sort();
   select.innerHTML = '<option value="">All statuses</option>' + statuses
-    .map((status) => `<option value="${escapeHtml(status)}">${escapeHtml(status)}</option>`)
+    .map((status) => `<option value="${escapeHtml(status)}">${escapeHtml(formatComplaintStatus(status))}</option>`)
     .join('');
   select.value = statuses.includes(selectedStatus) ? selectedStatus : '';
 }

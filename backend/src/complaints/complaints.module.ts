@@ -5,9 +5,10 @@ import { StorageModule } from '../storage/storage.module';
 import { AiModule } from '../ai/ai.module';
 import { PriorityModule } from '../priority/priority.module';
 import { DuplicateModule } from '../duplicate/duplicate.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [StorageModule, AiModule, PriorityModule, DuplicateModule],
+  imports: [StorageModule, AiModule, PriorityModule, DuplicateModule, AuthModule],
   controllers: [ComplaintsController],
   providers: [ComplaintsService],
   exports: [ComplaintsService],

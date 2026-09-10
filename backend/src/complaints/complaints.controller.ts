@@ -5,6 +5,9 @@ import {
   Param,
   Query,
   Body,
+  Headers,
+  Patch,
+  UnauthorizedException,
   UseInterceptors,
   UploadedFile,
   ParseIntPipe,
@@ -15,10 +18,15 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { ComplaintsService } from './complaints.service';
 import { CreateComplaintDto } from './dto/create-complaint.dto';
+import { UpdateComplaintStatusDto } from './dto/update-complaint-status.dto';
+import { AuthService } from '../auth/auth.service';
 
 @Controller('api/complaints')
 export class ComplaintsController {
-  constructor(private readonly complaintsService: ComplaintsService) {}
+  constructor(
+    private readonly complaintsService: ComplaintsService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Post()
   @UseInterceptors(FileInterceptor('image'))
@@ -35,6 +43,19 @@ export class ComplaintsController {
     @Query('offset', new DefaultValuePipe(0), ParseIntPipe) offset: number,
   ) {
     return this.complaintsService.getComplaints(limit, offset);
+  }
+
+  @Patch(':id/status')
+  async updateComplaintStatus(
+    @Param('id') id: string,
+    @Body() dto: UpdateComplaintStatusDto,
+    @Headers('authorization') authorization?: string,
+  ) {
+    const token = authorization?.replace(/^Bearer\s+/i, '');
+    if (!this.authService.verifyToken(token || '')) {
+      throw new UnauthorizedException('A municipal officer session is required to update complaint status.');
+    }
+    return this.complaintsService.updateComplaintStatus(id, dto);
   }
 
   @Get(':id/image')

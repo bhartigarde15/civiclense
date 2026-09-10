@@ -245,7 +245,7 @@
     <div class="card">
       <div class="card-header action-queue-header">
         <div>
-          <h3 class="card-title">🎯 Priority Operational Action Queue</h3>
+          <h3 class="card-title">🎯 Municipal Action Queue</h3>
           <p style="font-size: 0.85rem; color: var(--gray-mid); margin-top: 0.2rem;">Live municipal complaint queue sorted by priority score.</p>
         </div>
         <div class="queue-controls">
@@ -264,9 +264,9 @@
             <option value="">All statuses</option>
           </select>
           <select id="complaintSortSelect" onchange="sortComplaintsTable()" aria-label="Sort complaints">
+            <option value="newest" selected>Created: newest first</option>
             <option value="priority-desc">Priority: high to low</option>
             <option value="priority-asc">Priority: low to high</option>
-            <option value="newest">Created: newest first</option>
             <option value="oldest">Created: oldest first</option>
             <option value="location">Location: A to Z</option>
           </select>
@@ -284,12 +284,13 @@
               <th>Priority Score</th>
               <th>Duplicates</th>
               <th>Status</th>
+              <th>Update status</th>
               <th>Photo</th>
-              <th>Created</th>
+              <th id="createdAtHeader" aria-sort="none"><button id="createdAtSortButton" type="button" class="table-sort-button" onclick="sortComplaintsByCreatedAt()">Created <span aria-hidden="true">↕</span></button></th>
             </tr>
           </thead>
           <tbody id="complaintsTableBody">
-            <tr><td colspan="9" style="text-align: center; color: var(--gray-mid);">Loading complaints queue...</td></tr>
+            <tr><td colspan="10" style="text-align: center; color: var(--gray-mid);">Loading complaints queue...</td></tr>
           </tbody>
         </table>
       </div>
@@ -298,7 +299,7 @@
     </section>
 
     <!-- Bottom Actions & Logout Section -->
-    <div class="card" style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #fff;">
+    <div class="card session-card" style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #fff;">
       <div style="display: flex; align-items: center; gap: 0.75rem;">
         <div class="kpi-icon kpi-icon-blue" style="width: 40px; height: 40px; font-size: 1.25rem;">🔐</div>
         <div>
@@ -306,7 +307,7 @@
           <div style="font-size: 0.8rem; color: var(--gray-mid);">Signed in as <strong id="officerEmailBottom">admin@city.gov</strong> (City Operations Command)</div>
         </div>
       </div>
-      <div style="display: flex; gap: 0.75rem;">
+      <div class="session-actions" style="display: flex; gap: 0.75rem;">
         <a href="index.html" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-secondary">Open Citizen Portal in New Tab ↗</a>
         <button type="button" class="nav-btn" onclick="handleLogout()" aria-label="End municipal session" style="background: var(--danger-light); color: var(--danger); border: 1px solid #f5c6cb; font-weight: 700; cursor: pointer;">
           🚪 Sign Out / Logout

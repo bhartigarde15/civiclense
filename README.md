@@ -118,6 +118,8 @@ GOOGLE_CLOUD_LOCATION=us-central1
 BIGQUERY_DATASET=civiclens
 BIGQUERY_TABLE=complaints
 GCS_BUCKET=your-gcs-bucket-name
+# Enable Maps JavaScript API and Places API for this browser-restricted key.
+GOOGLE_MAPS_API_KEY=your-browser-restricted-google-maps-key
 PORT=8080
 ```
 *(Note: If no GCP project is provided, CivicLens automatically operates in high-fidelity local analytical fallback mode so you can test all features offline).*

@@ -322,7 +322,7 @@ export function generateSeedData(totalCount = 120): ComplaintSeed[] {
     complaints.push({
       complaint_id: complaintId,
       description,
-      image_url: i % 4 === 0 ? `https://storage.googleapis.com/civiclens-demo/complaint_${i}.jpg` : null,
+      image_url: null,
       category,
       severity,
       department,

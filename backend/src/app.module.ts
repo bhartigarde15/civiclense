@@ -9,6 +9,7 @@ import { DuplicateModule } from './duplicate/duplicate.module';
 import { ComplaintsModule } from './complaints/complaints.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AuthModule } from './auth/auth.module';
+import { PublicConfigModule } from './config/config.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuthModule } from './auth/auth.module';
     ComplaintsModule,
     DashboardModule,
     AuthModule,
+    PublicConfigModule,
   ],
 })
 export class AppModule {}

@@ -293,6 +293,54 @@ textarea.form-control {
   font-weight: 600;
 }
 
+.location-map-preview {
+  height: 180px;
+  margin-top: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--gray-light);
+  border-radius: var(--radius-sm);
+  background: var(--bg-light);
+}
+
+.location-map-empty {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  padding: 1rem;
+  color: var(--gray-mid);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.location-map-help {
+  margin: 0.35rem 0 0;
+  color: var(--gray-mid);
+  font-size: 0.8rem;
+}
+
+.location-map-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 0.45rem;
+}
+
+.location-map-button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.location-map-button:hover,
+.location-map-button:focus-visible {
+  text-decoration: underline;
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
@@ -600,6 +648,23 @@ textarea.form-control {
   font-size: 0.8rem;
 }
 
+.complaint-status-select {
+  min-width: 124px;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--dark);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.complaint-status-select:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .queue-controls input {
   min-width: 190px;
 }
@@ -682,6 +747,8 @@ textarea.form-control {
 /* Data Tables */
 .table-responsive {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 table {
@@ -697,6 +764,23 @@ th {
   font-weight: 700;
   color: var(--gray-dark);
   border-bottom: 2px solid var(--gray-light);
+}
+
+.table-sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-weight: inherit;
+}
+
+.table-sort-button:hover {
+  color: var(--primary);
 }
 
 td {
@@ -893,6 +977,10 @@ footer {
 
 /* Enhanced Mobile Responsiveness (Phones & Small Tablets) */
 @media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+
   .navbar {
     padding: 0.75rem 1rem;
     flex-wrap: wrap;
@@ -903,6 +991,10 @@ footer {
     font-size: 1.15rem;
   }
 
+  .brand-text span {
+    display: none;
+  }
+
   .nav-links {
     width: 100%;
     justify-content: flex-start;
@@ -911,7 +1003,8 @@ footer {
   }
 
   .nav-btn {
-    padding: 0.45rem 0.85rem;
+    min-height: 44px;
+    padding: 0.45rem 0.7rem;
     font-size: 0.8rem;
   }
 
@@ -921,6 +1014,7 @@ footer {
 
   .hero h2 {
     font-size: 1.6rem;
+    line-height: 1.2;
   }
 
   .hero p {
@@ -929,6 +1023,15 @@ footer {
 
   .card {
     padding: 1.25rem 1rem;
+  }
+
+  .card-header {
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
   }
 
   .form-row {
@@ -953,5 +1056,87 @@ footer {
 
   .login-card {
     padding: 1.5rem 1rem;
+  }
+
+  .pills-container {
+    gap: 0.5rem;
+  }
+
+  .pill-btn {
+    min-height: 40px;
+    padding: 0.45rem 0.7rem;
+  }
+
+  .location-map-preview {
+    height: 220px;
+  }
+
+  .location-map-actions,
+  .queue-controls,
+  .queue-pagination,
+  .queue-pagination-actions {
+    width: 100%;
+  }
+
+  .location-map-button,
+  .queue-controls input,
+  .queue-controls select {
+    min-height: 44px;
+  }
+
+  .queue-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .queue-controls input {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .queue-controls select {
+    width: 100%;
+  }
+
+  .dashboard-tabs {
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dashboard-tab {
+    flex: 0 0 auto;
+    min-height: 44px;
+  }
+
+  .table-responsive table {
+    min-width: 800px;
+  }
+
+  .queue-pagination {
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .queue-pagination-actions {
+    flex-wrap: wrap;
+  }
+
+  .queue-page-button {
+    min-height: 36px;
+  }
+
+  .session-card,
+  .session-actions {
+    width: 100%;
+  }
+
+  .session-actions {
+    flex-direction: column;
+  }
+
+  .session-actions .nav-btn {
+    justify-content: center;
+    width: 100%;
   }
 }

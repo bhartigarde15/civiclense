@@ -15,7 +15,7 @@
     "ai_summary": "Loose gravel and surface degradation at active crossing.",
     "ai_reason": "Slipping hazard during braking at a high-volume traffic node.",
     "status": "OPEN",
-    "created_at": "2026-09-03T11:41:25.231Z"
+    "created_at": "2026-09-09T10:28:09.668Z"
   },
   {
     "complaint_id": "CL-0002",
@@ -33,7 +33,7 @@
     "ai_summary": "Faulty flickering streetlight fixture with electrical buzz.",
     "ai_reason": "Minor electrical defect causing public nuisance and visual distraction.",
     "status": "OPEN",
-    "created_at": "2026-09-02T04:41:25.231Z"
+    "created_at": "2026-09-08T03:28:09.668Z"
   },
   {
     "complaint_id": "CL-0003",
@@ -51,12 +51,12 @@
     "ai_summary": "Cross-contamination risk from cracked water supply conduit.",
     "ai_reason": "Immediate threat to community health from potential potable water contamination.",
     "status": "OPEN",
-    "created_at": "2026-08-31T21:41:25.231Z"
+    "created_at": "2026-09-06T20:28:09.668Z"
   },
   {
     "complaint_id": "CL-0004",
     "description": "Sewage water backing up into ground floor residential compounds.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_4.jpg",
+    "image_url": null,
     "category": "Drainage",
     "severity": "Critical",
     "department": "Drainage Department",
@@ -69,7 +69,7 @@
     "ai_summary": "Severe sewage backflow into residential properties.",
     "ai_reason": "Acute biohazard and property damage demanding emergency intervention.",
     "status": "OPEN",
-    "created_at": "2026-08-31T14:41:25.231Z"
+    "created_at": "2026-09-06T13:28:09.668Z"
   },
   {
     "complaint_id": "CL-0005",
@@ -87,7 +87,7 @@
     "ai_summary": "Tree branch dangerously resting on live power lines.",
     "ai_reason": "Imminent fire and power grid disruption risk.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-30T07:41:25.231Z"
+    "created_at": "2026-09-05T06:28:09.668Z"
   },
   {
     "complaint_id": "CL-0006",
@@ -105,7 +105,7 @@
     "ai_summary": "Stalled heavy vehicle blocking primary thoroughfare.",
     "ai_reason": "Bottleneck generating kilometers of peak-hour commuter gridlock.",
     "status": "OPEN",
-    "created_at": "2026-08-29T00:41:25.231Z"
+    "created_at": "2026-09-03T23:28:09.668Z"
   },
   {
     "complaint_id": "CL-0007",
@@ -123,12 +123,12 @@
     "ai_summary": "Sidewalk blocked by illegal commercial waste dumping.",
     "ai_reason": "Obstruction of pedestrian pathways and degradation of neighborhood cleanliness.",
     "status": "OPEN",
-    "created_at": "2026-08-28T17:41:25.231Z"
+    "created_at": "2026-09-03T16:28:09.668Z"
   },
   {
     "complaint_id": "CL-0008",
     "description": "Road cave-in near storm drain junction creating an immediate crash hazard.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_8.jpg",
+    "image_url": null,
     "category": "Road Damage",
     "severity": "Critical",
     "department": "Roads Department",
@@ -141,7 +141,7 @@
     "ai_summary": "Road surface cave-in presenting severe vehicle collision danger.",
     "ai_reason": "Structural collapse requiring immediate barricading and emergency repair.",
     "status": "RESOLVED",
-    "created_at": "2026-08-27T10:41:25.231Z"
+    "created_at": "2026-09-02T09:28:09.668Z"
   },
   {
     "complaint_id": "CL-0009",
@@ -159,7 +159,7 @@
     "ai_summary": "Exposed live electrical wiring at public street pole base.",
     "ai_reason": "Critical electrocution hazard requiring urgent electrical shutdown and repair.",
     "status": "OPEN",
-    "created_at": "2026-08-26T03:41:25.231Z"
+    "created_at": "2026-09-01T02:28:09.668Z"
   },
   {
     "complaint_id": "CL-0010",
@@ -177,7 +177,7 @@
     "ai_summary": "Major drinking water pipeline rupture causing roadway flooding.",
     "ai_reason": "Massive loss of treated drinking water and severe street submergence.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-24T20:41:25.231Z"
+    "created_at": "2026-08-30T19:28:09.668Z"
   },
   {
     "complaint_id": "CL-0011",
@@ -195,12 +195,12 @@
     "ai_summary": "Stagnant roadside wastewater breeding disease vectors.",
     "ai_reason": "Vector-borne disease risk including dengue and malaria.",
     "status": "OPEN",
-    "created_at": "2026-08-24T13:41:25.231Z"
+    "created_at": "2026-08-30T12:28:09.668Z"
   },
   {
     "complaint_id": "CL-0012",
     "description": "Abandoned construction debris and sharp metal rods left unguarded on sidewalk.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_12.jpg",
+    "image_url": null,
     "category": "Public Safety",
     "severity": "High",
     "department": "Public Safety Department",
@@ -213,7 +213,7 @@
     "ai_summary": "Hazardous unguarded construction debris on pedestrian pathway.",
     "ai_reason": "Presents puncture and injury risks to daily walkers and children.",
     "status": "OPEN",
-    "created_at": "2026-08-23T06:41:25.231Z"
+    "created_at": "2026-08-29T05:28:09.668Z"
   },
   {
     "complaint_id": "CL-0013",
@@ -231,7 +231,7 @@
     "ai_summary": "Faded pedestrian crosswalk markings reducing crossing safety.",
     "ai_reason": "Reduced pedestrian visibility and driver compliance.",
     "status": "OPEN",
-    "created_at": "2026-08-21T23:41:25.231Z"
+    "created_at": "2026-08-27T22:28:09.668Z"
   },
   {
     "complaint_id": "CL-0014",
@@ -249,7 +249,7 @@
     "ai_summary": "Community bins uncleared for a week posing hygiene risk.",
     "ai_reason": "Delayed municipal collection leading to odor and street pollution.",
     "status": "OPEN",
-    "created_at": "2026-08-21T16:41:25.231Z"
+    "created_at": "2026-08-27T15:28:09.668Z"
   },
   {
     "complaint_id": "CL-0015",
@@ -267,12 +267,12 @@
     "ai_summary": "Deep dangerous pothole threatening two-wheeler safety.",
     "ai_reason": "Direct risk of physical injury and vehicle damage for daily commuters.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-20T09:41:25.231Z"
+    "created_at": "2026-08-26T08:28:09.668Z"
   },
   {
     "complaint_id": "CL-0016",
     "description": "Entire residential lane plunged into total darkness for the past 4 nights.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_16.jpg",
+    "image_url": null,
     "category": "Streetlights",
     "severity": "Medium",
     "department": "Electrical Department",
@@ -285,7 +285,7 @@
     "ai_summary": "Multi-pole blackout in residential sector impacting night safety.",
     "ai_reason": "General safety and mobility concern for pedestrians after sundown.",
     "status": "RESOLVED",
-    "created_at": "2026-08-19T02:41:25.231Z"
+    "created_at": "2026-08-25T01:28:09.668Z"
   },
   {
     "complaint_id": "CL-0017",
@@ -303,7 +303,7 @@
     "ai_summary": "Underground water line seepage destabilizing pavement.",
     "ai_reason": "Subsurface erosion that could trigger sudden road collapse.",
     "status": "OPEN",
-    "created_at": "2026-08-17T19:41:25.231Z"
+    "created_at": "2026-08-23T18:28:09.668Z"
   },
   {
     "complaint_id": "CL-0018",
@@ -321,7 +321,7 @@
     "ai_summary": "Collapsed culvert obstructing neighborhood runoff.",
     "ai_reason": "Blockage of key drainage artery during regular monsoon discharges.",
     "status": "OPEN",
-    "created_at": "2026-08-17T12:41:25.231Z"
+    "created_at": "2026-08-23T11:28:09.668Z"
   },
   {
     "complaint_id": "CL-0019",
@@ -339,12 +339,12 @@
     "ai_summary": "Animal hazard obstructing critical hospital emergency access.",
     "ai_reason": "Impedes emergency vehicle transit and poses collision risk.",
     "status": "OPEN",
-    "created_at": "2026-08-16T05:41:25.231Z"
+    "created_at": "2026-08-22T04:28:09.668Z"
   },
   {
     "complaint_id": "CL-0020",
     "description": "Traffic signal malfunctioning showing both green and red simultaneously.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_20.jpg",
+    "image_url": null,
     "category": "Traffic",
     "severity": "Critical",
     "department": "Traffic Department",
@@ -357,7 +357,7 @@
     "ai_summary": "Malfunctioning traffic light creating severe junction confusion.",
     "ai_reason": "High probability of right-angle vehicular collisions at junction.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-14T22:41:25.231Z"
+    "created_at": "2026-08-20T21:28:09.668Z"
   },
   {
     "complaint_id": "CL-0021",
@@ -375,7 +375,7 @@
     "ai_summary": "Vegetable market waste accumulation requiring immediate clearing.",
     "ai_reason": "High footfall area impacted by rotting organic waste.",
     "status": "OPEN",
-    "created_at": "2026-08-14T15:41:25.231Z"
+    "created_at": "2026-08-20T14:28:09.668Z"
   },
   {
     "complaint_id": "CL-0022",
@@ -393,7 +393,7 @@
     "ai_summary": "Severe road crater directly in front of school entrance.",
     "ai_reason": "High vulnerability zone with children and school buses traversing daily.",
     "status": "OPEN",
-    "created_at": "2026-08-13T08:41:25.231Z"
+    "created_at": "2026-08-19T07:28:09.668Z"
   },
   {
     "complaint_id": "CL-0023",
@@ -411,12 +411,12 @@
     "ai_summary": "Structurally compromised streetlight pole posing falling hazard.",
     "ai_reason": "Physical hazard of pole collapsing onto vehicular traffic.",
     "status": "OPEN",
-    "created_at": "2026-08-12T01:41:25.231Z"
+    "created_at": "2026-08-18T00:28:09.668Z"
   },
   {
     "complaint_id": "CL-0024",
     "description": "Broken municipal valve spraying water continuously across the walkway.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_24.jpg",
+    "image_url": null,
     "category": "Water Leakage",
     "severity": "High",
     "department": "Water Department",
@@ -429,7 +429,7 @@
     "ai_summary": "High-pressure municipal valve leak wasting potable water.",
     "ai_reason": "Significant resource wastage and pedestrian path disruption.",
     "status": "RESOLVED",
-    "created_at": "2026-08-11T18:41:25.231Z"
+    "created_at": "2026-08-17T17:28:09.668Z"
   },
   {
     "complaint_id": "CL-0025",
@@ -447,7 +447,7 @@
     "ai_summary": "Clogged stormwater drain causing street waterlogging.",
     "ai_reason": "Inundation impairs local traffic flow and damages surrounding infrastructure.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-10T11:41:25.231Z"
+    "created_at": "2026-08-16T10:28:09.668Z"
   },
   {
     "complaint_id": "CL-0026",
@@ -465,7 +465,7 @@
     "ai_summary": "Broken safety guardrail on elevated railway overpass.",
     "ai_reason": "Catastrophic fall risk for commuters using elevated pedestrian walkway.",
     "status": "OPEN",
-    "created_at": "2026-08-09T04:41:25.231Z"
+    "created_at": "2026-08-15T03:28:09.668Z"
   },
   {
     "complaint_id": "CL-0027",
@@ -483,12 +483,12 @@
     "ai_summary": "Illegal parking obstructing critical emergency transit corridor.",
     "ai_reason": "Delays emergency response ambulances and municipal vehicles.",
     "status": "OPEN",
-    "created_at": "2026-08-07T21:41:25.231Z"
+    "created_at": "2026-08-13T20:28:09.668Z"
   },
   {
     "complaint_id": "CL-0028",
     "description": "Hazardous medical and electronic waste discarded near the municipal park perimeter.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_28.jpg",
+    "image_url": null,
     "category": "Waste Management",
     "severity": "High",
     "department": "Municipal Sanitation",
@@ -501,7 +501,7 @@
     "ai_summary": "Improperly discarded mixed waste near public recreation area.",
     "ai_reason": "Environmental safety risk in proximity to residential and park areas.",
     "status": "OPEN",
-    "created_at": "2026-09-04T14:41:25.231Z"
+    "created_at": "2026-09-10T13:28:09.668Z"
   },
   {
     "complaint_id": "CL-0029",
@@ -519,7 +519,7 @@
     "ai_summary": "Asphalt subsidence near heavy transit bus terminal.",
     "ai_reason": "Transit congestion and risk to heavy public transport vehicles.",
     "status": "OPEN",
-    "created_at": "2026-09-03T07:41:25.231Z"
+    "created_at": "2026-09-09T06:28:09.668Z"
   },
   {
     "complaint_id": "CL-0030",
@@ -537,7 +537,7 @@
     "ai_summary": "Consecutive non-functional streetlights causing dark transit corridor.",
     "ai_reason": "Impaired night visibility increases criminal vulnerability and accident risk.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-09-02T00:41:25.231Z"
+    "created_at": "2026-09-07T23:28:09.668Z"
   },
   {
     "complaint_id": "CL-0031",
@@ -555,12 +555,12 @@
     "ai_summary": "Mainline fracture reducing residential supply volume.",
     "ai_reason": "Essential utility disruption affecting hundreds of households.",
     "status": "OPEN",
-    "created_at": "2026-09-01T17:41:25.231Z"
+    "created_at": "2026-09-07T16:28:09.668Z"
   },
   {
     "complaint_id": "CL-0032",
     "description": "Open manhole without cover near pedestrian crossing with no warning signs.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_32.jpg",
+    "image_url": null,
     "category": "Drainage",
     "severity": "Critical",
     "department": "Drainage Department",
@@ -573,7 +573,7 @@
     "ai_summary": "Uncovered open manhole on active pedestrian sidewalk.",
     "ai_reason": "Severe life-safety hazard for pedestrians and two-wheelers in low light.",
     "status": "RESOLVED",
-    "created_at": "2026-08-31T10:41:25.231Z"
+    "created_at": "2026-09-06T09:28:09.668Z"
   },
   {
     "complaint_id": "CL-0033",
@@ -591,7 +591,7 @@
     "ai_summary": "Hazardous commercial chemical spill on arterial roadway.",
     "ai_reason": "Chemical exposure and vehicle skidding hazard.",
     "status": "OPEN",
-    "created_at": "2026-08-30T03:41:25.231Z"
+    "created_at": "2026-09-05T02:28:09.668Z"
   },
   {
     "complaint_id": "CL-0034",
@@ -609,7 +609,7 @@
     "ai_summary": "Absence of roundabout signage causing near collisions.",
     "ai_reason": "Confuses unfamiliar drivers leading to dangerous lane switching.",
     "status": "OPEN",
-    "created_at": "2026-08-28T20:41:25.231Z"
+    "created_at": "2026-09-03T19:28:09.668Z"
   },
   {
     "complaint_id": "CL-0035",
@@ -627,12 +627,12 @@
     "ai_summary": "Overflowing residential garbage creating sanitation concerns.",
     "ai_reason": "Prolonged accumulation creates public health hazards and pest breeding.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-28T13:41:25.231Z"
+    "created_at": "2026-09-03T12:28:09.668Z"
   },
   {
     "complaint_id": "CL-0036",
     "description": "Loose gravel and broken tarmac spreading across the busy commercial intersection.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_36.jpg",
+    "image_url": null,
     "category": "Road Damage",
     "severity": "High",
     "department": "Roads Department",
@@ -645,7 +645,7 @@
     "ai_summary": "Loose gravel and surface degradation at active crossing.",
     "ai_reason": "Slipping hazard during braking at a high-volume traffic node.",
     "status": "OPEN",
-    "created_at": "2026-08-27T06:41:25.231Z"
+    "created_at": "2026-09-02T05:28:09.668Z"
   },
   {
     "complaint_id": "CL-0037",
@@ -663,7 +663,7 @@
     "ai_summary": "Faulty flickering streetlight fixture with electrical buzz.",
     "ai_reason": "Minor electrical defect causing public nuisance and visual distraction.",
     "status": "OPEN",
-    "created_at": "2026-08-25T23:41:25.231Z"
+    "created_at": "2026-08-31T22:28:09.668Z"
   },
   {
     "complaint_id": "CL-0038",
@@ -681,7 +681,7 @@
     "ai_summary": "Cross-contamination risk from cracked water supply conduit.",
     "ai_reason": "Immediate threat to community health from potential potable water contamination.",
     "status": "OPEN",
-    "created_at": "2026-08-25T16:41:25.231Z"
+    "created_at": "2026-08-31T15:28:09.668Z"
   },
   {
     "complaint_id": "CL-0039",
@@ -699,12 +699,12 @@
     "ai_summary": "Severe sewage backflow into residential properties.",
     "ai_reason": "Acute biohazard and property damage demanding emergency intervention.",
     "status": "OPEN",
-    "created_at": "2026-08-24T09:41:25.231Z"
+    "created_at": "2026-08-30T08:28:09.668Z"
   },
   {
     "complaint_id": "CL-0040",
     "description": "Fallen tree branch hanging over high-voltage power lines after gusty winds.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_40.jpg",
+    "image_url": null,
     "category": "Public Safety",
     "severity": "Critical",
     "department": "Public Safety Department",
@@ -717,7 +717,7 @@
     "ai_summary": "Tree branch dangerously resting on live power lines.",
     "ai_reason": "Imminent fire and power grid disruption risk.",
     "status": "RESOLVED",
-    "created_at": "2026-08-23T02:41:25.231Z"
+    "created_at": "2026-08-29T01:28:09.668Z"
   },
   {
     "complaint_id": "CL-0041",
@@ -735,7 +735,7 @@
     "ai_summary": "Stalled heavy vehicle blocking primary thoroughfare.",
     "ai_reason": "Bottleneck generating kilometers of peak-hour commuter gridlock.",
     "status": "OPEN",
-    "created_at": "2026-08-21T19:41:25.231Z"
+    "created_at": "2026-08-27T18:28:09.668Z"
   },
   {
     "complaint_id": "CL-0042",
@@ -753,7 +753,7 @@
     "ai_summary": "Sidewalk blocked by illegal commercial waste dumping.",
     "ai_reason": "Obstruction of pedestrian pathways and degradation of neighborhood cleanliness.",
     "status": "OPEN",
-    "created_at": "2026-08-21T12:41:25.231Z"
+    "created_at": "2026-08-27T11:28:09.668Z"
   },
   {
     "complaint_id": "CL-0043",
@@ -771,12 +771,12 @@
     "ai_summary": "Road surface cave-in presenting severe vehicle collision danger.",
     "ai_reason": "Structural collapse requiring immediate barricading and emergency repair.",
     "status": "OPEN",
-    "created_at": "2026-08-20T05:41:25.231Z"
+    "created_at": "2026-08-26T04:28:09.668Z"
   },
   {
     "complaint_id": "CL-0044",
     "description": "Exposed wiring at the base of streetlight pole accessible to children.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_44.jpg",
+    "image_url": null,
     "category": "Streetlights",
     "severity": "Critical",
     "department": "Electrical Department",
@@ -789,7 +789,7 @@
     "ai_summary": "Exposed live electrical wiring at public street pole base.",
     "ai_reason": "Critical electrocution hazard requiring urgent electrical shutdown and repair.",
     "status": "OPEN",
-    "created_at": "2026-08-18T22:41:25.231Z"
+    "created_at": "2026-08-24T21:28:09.668Z"
   },
   {
     "complaint_id": "CL-0045",
@@ -807,7 +807,7 @@
     "ai_summary": "Major drinking water pipeline rupture causing roadway flooding.",
     "ai_reason": "Massive loss of treated drinking water and severe street submergence.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-18T15:41:25.231Z"
+    "created_at": "2026-08-24T14:28:09.668Z"
   },
   {
     "complaint_id": "CL-0046",
@@ -825,7 +825,7 @@
     "ai_summary": "Stagnant roadside wastewater breeding disease vectors.",
     "ai_reason": "Vector-borne disease risk including dengue and malaria.",
     "status": "OPEN",
-    "created_at": "2026-08-17T08:41:25.231Z"
+    "created_at": "2026-08-23T07:28:09.668Z"
   },
   {
     "complaint_id": "CL-0047",
@@ -843,12 +843,12 @@
     "ai_summary": "Hazardous unguarded construction debris on pedestrian pathway.",
     "ai_reason": "Presents puncture and injury risks to daily walkers and children.",
     "status": "OPEN",
-    "created_at": "2026-08-16T01:41:25.231Z"
+    "created_at": "2026-08-22T00:28:09.668Z"
   },
   {
     "complaint_id": "CL-0048",
     "description": "Pedestrian zebra crossing faded completely near busy transit junction.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_48.jpg",
+    "image_url": null,
     "category": "Traffic",
     "severity": "Low",
     "department": "Traffic Department",
@@ -861,7 +861,7 @@
     "ai_summary": "Faded pedestrian crosswalk markings reducing crossing safety.",
     "ai_reason": "Reduced pedestrian visibility and driver compliance.",
     "status": "RESOLVED",
-    "created_at": "2026-08-15T18:41:25.231Z"
+    "created_at": "2026-08-21T17:28:09.668Z"
   },
   {
     "complaint_id": "CL-0049",
@@ -879,7 +879,7 @@
     "ai_summary": "Community bins uncleared for a week posing hygiene risk.",
     "ai_reason": "Delayed municipal collection leading to odor and street pollution.",
     "status": "OPEN",
-    "created_at": "2026-08-14T11:41:25.231Z"
+    "created_at": "2026-08-20T10:28:09.668Z"
   },
   {
     "complaint_id": "CL-0050",
@@ -897,7 +897,7 @@
     "ai_summary": "Deep dangerous pothole threatening two-wheeler safety.",
     "ai_reason": "Direct risk of physical injury and vehicle damage for daily commuters.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-13T04:41:25.231Z"
+    "created_at": "2026-08-19T03:28:09.668Z"
   },
   {
     "complaint_id": "CL-0051",
@@ -915,12 +915,12 @@
     "ai_summary": "Multi-pole blackout in residential sector impacting night safety.",
     "ai_reason": "General safety and mobility concern for pedestrians after sundown.",
     "status": "OPEN",
-    "created_at": "2026-08-11T21:41:25.231Z"
+    "created_at": "2026-08-17T20:28:09.668Z"
   },
   {
     "complaint_id": "CL-0052",
     "description": "Continuous underground pipe leakage seeping through road foundation.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_52.jpg",
+    "image_url": null,
     "category": "Water Leakage",
     "severity": "Medium",
     "department": "Water Department",
@@ -933,7 +933,7 @@
     "ai_summary": "Underground water line seepage destabilizing pavement.",
     "ai_reason": "Subsurface erosion that could trigger sudden road collapse.",
     "status": "OPEN",
-    "created_at": "2026-08-11T14:41:25.231Z"
+    "created_at": "2026-08-17T13:28:09.668Z"
   },
   {
     "complaint_id": "CL-0053",
@@ -951,7 +951,7 @@
     "ai_summary": "Collapsed culvert obstructing neighborhood runoff.",
     "ai_reason": "Blockage of key drainage artery during regular monsoon discharges.",
     "status": "OPEN",
-    "created_at": "2026-08-10T07:41:25.231Z"
+    "created_at": "2026-08-16T06:28:09.668Z"
   },
   {
     "complaint_id": "CL-0054",
@@ -969,7 +969,7 @@
     "ai_summary": "Animal hazard obstructing critical hospital emergency access.",
     "ai_reason": "Impedes emergency vehicle transit and poses collision risk.",
     "status": "OPEN",
-    "created_at": "2026-08-09T00:41:25.231Z"
+    "created_at": "2026-08-14T23:28:09.668Z"
   },
   {
     "complaint_id": "CL-0055",
@@ -987,12 +987,12 @@
     "ai_summary": "Malfunctioning traffic light creating severe junction confusion.",
     "ai_reason": "High probability of right-angle vehicular collisions at junction.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-08T17:41:25.231Z"
+    "created_at": "2026-08-14T16:28:09.668Z"
   },
   {
     "complaint_id": "CL-0056",
     "description": "Commercial waste dumped behind the vegetable market creating unsanitary conditions.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_56.jpg",
+    "image_url": null,
     "category": "Waste Management",
     "severity": "Medium",
     "department": "Municipal Sanitation",
@@ -1005,7 +1005,7 @@
     "ai_summary": "Vegetable market waste accumulation requiring immediate clearing.",
     "ai_reason": "High footfall area impacted by rotting organic waste.",
     "status": "RESOLVED",
-    "created_at": "2026-09-04T10:41:25.231Z"
+    "created_at": "2026-09-10T09:28:09.668Z"
   },
   {
     "complaint_id": "CL-0057",
@@ -1023,7 +1023,7 @@
     "ai_summary": "Severe road crater directly in front of school entrance.",
     "ai_reason": "High vulnerability zone with children and school buses traversing daily.",
     "status": "OPEN",
-    "created_at": "2026-09-03T03:41:25.231Z"
+    "created_at": "2026-09-09T02:28:09.668Z"
   },
   {
     "complaint_id": "CL-0058",
@@ -1041,7 +1041,7 @@
     "ai_summary": "Structurally compromised streetlight pole posing falling hazard.",
     "ai_reason": "Physical hazard of pole collapsing onto vehicular traffic.",
     "status": "OPEN",
-    "created_at": "2026-09-01T20:41:25.231Z"
+    "created_at": "2026-09-07T19:28:09.668Z"
   },
   {
     "complaint_id": "CL-0059",
@@ -1059,12 +1059,12 @@
     "ai_summary": "High-pressure municipal valve leak wasting potable water.",
     "ai_reason": "Significant resource wastage and pedestrian path disruption.",
     "status": "OPEN",
-    "created_at": "2026-09-01T13:41:25.231Z"
+    "created_at": "2026-09-07T12:28:09.668Z"
   },
   {
     "complaint_id": "CL-0060",
     "description": "Storm drain completely clogged with plastic and silt, overflowing onto sidewalk.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_60.jpg",
+    "image_url": null,
     "category": "Drainage",
     "severity": "High",
     "department": "Drainage Department",
@@ -1077,7 +1077,7 @@
     "ai_summary": "Clogged stormwater drain causing street waterlogging.",
     "ai_reason": "Inundation impairs local traffic flow and damages surrounding infrastructure.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-31T06:41:25.231Z"
+    "created_at": "2026-09-06T05:28:09.668Z"
   },
   {
     "complaint_id": "CL-0061",
@@ -1095,7 +1095,7 @@
     "ai_summary": "Broken safety guardrail on elevated railway overpass.",
     "ai_reason": "Catastrophic fall risk for commuters using elevated pedestrian walkway.",
     "status": "OPEN",
-    "created_at": "2026-08-29T23:41:25.231Z"
+    "created_at": "2026-09-04T22:28:09.668Z"
   },
   {
     "complaint_id": "CL-0062",
@@ -1113,7 +1113,7 @@
     "ai_summary": "Illegal parking obstructing critical emergency transit corridor.",
     "ai_reason": "Delays emergency response ambulances and municipal vehicles.",
     "status": "OPEN",
-    "created_at": "2026-08-29T16:41:25.231Z"
+    "created_at": "2026-09-04T15:28:09.668Z"
   },
   {
     "complaint_id": "CL-0063",
@@ -1131,12 +1131,12 @@
     "ai_summary": "Improperly discarded mixed waste near public recreation area.",
     "ai_reason": "Environmental safety risk in proximity to residential and park areas.",
     "status": "OPEN",
-    "created_at": "2026-08-28T09:41:25.231Z"
+    "created_at": "2026-09-03T08:28:09.668Z"
   },
   {
     "complaint_id": "CL-0064",
     "description": "Uneven road surface and collapsed asphalt near the bus terminal exit.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_64.jpg",
+    "image_url": null,
     "category": "Road Damage",
     "severity": "Medium",
     "department": "Roads Department",
@@ -1149,7 +1149,7 @@
     "ai_summary": "Asphalt subsidence near heavy transit bus terminal.",
     "ai_reason": "Transit congestion and risk to heavy public transport vehicles.",
     "status": "RESOLVED",
-    "created_at": "2026-08-27T02:41:25.231Z"
+    "created_at": "2026-09-02T01:28:09.668Z"
   },
   {
     "complaint_id": "CL-0065",
@@ -1167,7 +1167,7 @@
     "ai_summary": "Consecutive non-functional streetlights causing dark transit corridor.",
     "ai_reason": "Impaired night visibility increases criminal vulnerability and accident risk.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-25T19:41:25.231Z"
+    "created_at": "2026-08-31T18:28:09.668Z"
   },
   {
     "complaint_id": "CL-0066",
@@ -1185,7 +1185,7 @@
     "ai_summary": "Mainline fracture reducing residential supply volume.",
     "ai_reason": "Essential utility disruption affecting hundreds of households.",
     "status": "OPEN",
-    "created_at": "2026-08-25T12:41:25.231Z"
+    "created_at": "2026-08-31T11:28:09.668Z"
   },
   {
     "complaint_id": "CL-0067",
@@ -1203,12 +1203,12 @@
     "ai_summary": "Uncovered open manhole on active pedestrian sidewalk.",
     "ai_reason": "Severe life-safety hazard for pedestrians and two-wheelers in low light.",
     "status": "OPEN",
-    "created_at": "2026-08-24T05:41:25.231Z"
+    "created_at": "2026-08-30T04:28:09.668Z"
   },
   {
     "complaint_id": "CL-0068",
     "description": "Broken glass and hazardous chemicals spilled from commercial transport truck.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_68.jpg",
+    "image_url": null,
     "category": "Public Safety",
     "severity": "High",
     "department": "Public Safety Department",
@@ -1221,7 +1221,7 @@
     "ai_summary": "Hazardous commercial chemical spill on arterial roadway.",
     "ai_reason": "Chemical exposure and vehicle skidding hazard.",
     "status": "OPEN",
-    "created_at": "2026-08-22T22:41:25.231Z"
+    "created_at": "2026-08-28T21:28:09.668Z"
   },
   {
     "complaint_id": "CL-0069",
@@ -1239,7 +1239,7 @@
     "ai_summary": "Absence of roundabout signage causing near collisions.",
     "ai_reason": "Confuses unfamiliar drivers leading to dangerous lane switching.",
     "status": "OPEN",
-    "created_at": "2026-08-22T15:41:25.231Z"
+    "created_at": "2026-08-28T14:28:09.668Z"
   },
   {
     "complaint_id": "CL-0070",
@@ -1257,7 +1257,7 @@
     "ai_summary": "Overflowing residential garbage creating sanitation concerns.",
     "ai_reason": "Prolonged accumulation creates public health hazards and pest breeding.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-21T08:41:25.231Z"
+    "created_at": "2026-08-27T07:28:09.668Z"
   },
   {
     "complaint_id": "CL-0071",
@@ -1275,12 +1275,12 @@
     "ai_summary": "Loose gravel and surface degradation at active crossing.",
     "ai_reason": "Slipping hazard during braking at a high-volume traffic node.",
     "status": "OPEN",
-    "created_at": "2026-08-20T01:41:25.231Z"
+    "created_at": "2026-08-26T00:28:09.668Z"
   },
   {
     "complaint_id": "CL-0072",
     "description": "Street pole light flickering continuously and buzzing loudly near the park lane.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_72.jpg",
+    "image_url": null,
     "category": "Streetlights",
     "severity": "Low",
     "department": "Electrical Department",
@@ -1293,7 +1293,7 @@
     "ai_summary": "Faulty flickering streetlight fixture with electrical buzz.",
     "ai_reason": "Minor electrical defect causing public nuisance and visual distraction.",
     "status": "RESOLVED",
-    "created_at": "2026-08-19T18:41:25.231Z"
+    "created_at": "2026-08-25T17:28:09.668Z"
   },
   {
     "complaint_id": "CL-0073",
@@ -1311,7 +1311,7 @@
     "ai_summary": "Cross-contamination risk from cracked water supply conduit.",
     "ai_reason": "Immediate threat to community health from potential potable water contamination.",
     "status": "OPEN",
-    "created_at": "2026-08-18T11:41:25.231Z"
+    "created_at": "2026-08-24T10:28:09.668Z"
   },
   {
     "complaint_id": "CL-0074",
@@ -1329,7 +1329,7 @@
     "ai_summary": "Severe sewage backflow into residential properties.",
     "ai_reason": "Acute biohazard and property damage demanding emergency intervention.",
     "status": "OPEN",
-    "created_at": "2026-08-17T04:41:25.231Z"
+    "created_at": "2026-08-23T03:28:09.668Z"
   },
   {
     "complaint_id": "CL-0075",
@@ -1347,12 +1347,12 @@
     "ai_summary": "Tree branch dangerously resting on live power lines.",
     "ai_reason": "Imminent fire and power grid disruption risk.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-15T21:41:25.231Z"
+    "created_at": "2026-08-21T20:28:09.668Z"
   },
   {
     "complaint_id": "CL-0076",
     "description": "Disabled cargo vehicle blocking two main lanes of the transit corridor.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_76.jpg",
+    "image_url": null,
     "category": "Traffic",
     "severity": "High",
     "department": "Traffic Department",
@@ -1365,7 +1365,7 @@
     "ai_summary": "Stalled heavy vehicle blocking primary thoroughfare.",
     "ai_reason": "Bottleneck generating kilometers of peak-hour commuter gridlock.",
     "status": "OPEN",
-    "created_at": "2026-08-15T14:41:25.231Z"
+    "created_at": "2026-08-21T13:28:09.668Z"
   },
   {
     "complaint_id": "CL-0077",
@@ -1383,7 +1383,7 @@
     "ai_summary": "Sidewalk blocked by illegal commercial waste dumping.",
     "ai_reason": "Obstruction of pedestrian pathways and degradation of neighborhood cleanliness.",
     "status": "OPEN",
-    "created_at": "2026-08-14T07:41:25.231Z"
+    "created_at": "2026-08-20T06:28:09.668Z"
   },
   {
     "complaint_id": "CL-0078",
@@ -1401,7 +1401,7 @@
     "ai_summary": "Road surface cave-in presenting severe vehicle collision danger.",
     "ai_reason": "Structural collapse requiring immediate barricading and emergency repair.",
     "status": "OPEN",
-    "created_at": "2026-08-13T00:41:25.231Z"
+    "created_at": "2026-08-18T23:28:09.668Z"
   },
   {
     "complaint_id": "CL-0079",
@@ -1419,12 +1419,12 @@
     "ai_summary": "Exposed live electrical wiring at public street pole base.",
     "ai_reason": "Critical electrocution hazard requiring urgent electrical shutdown and repair.",
     "status": "OPEN",
-    "created_at": "2026-08-12T17:41:25.231Z"
+    "created_at": "2026-08-18T16:28:09.668Z"
   },
   {
     "complaint_id": "CL-0080",
     "description": "Main drinking water pipeline burst flooding the road with clean potable water.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_80.jpg",
+    "image_url": null,
     "category": "Water Leakage",
     "severity": "Critical",
     "department": "Water Department",
@@ -1437,7 +1437,7 @@
     "ai_summary": "Major drinking water pipeline rupture causing roadway flooding.",
     "ai_reason": "Massive loss of treated drinking water and severe street submergence.",
     "status": "RESOLVED",
-    "created_at": "2026-08-11T10:41:25.231Z"
+    "created_at": "2026-08-17T09:28:09.668Z"
   },
   {
     "complaint_id": "CL-0081",
@@ -1455,7 +1455,7 @@
     "ai_summary": "Stagnant roadside wastewater breeding disease vectors.",
     "ai_reason": "Vector-borne disease risk including dengue and malaria.",
     "status": "OPEN",
-    "created_at": "2026-08-10T03:41:25.231Z"
+    "created_at": "2026-08-16T02:28:09.668Z"
   },
   {
     "complaint_id": "CL-0082",
@@ -1473,7 +1473,7 @@
     "ai_summary": "Hazardous unguarded construction debris on pedestrian pathway.",
     "ai_reason": "Presents puncture and injury risks to daily walkers and children.",
     "status": "OPEN",
-    "created_at": "2026-08-08T20:41:25.231Z"
+    "created_at": "2026-08-14T19:28:09.668Z"
   },
   {
     "complaint_id": "CL-0083",
@@ -1491,12 +1491,12 @@
     "ai_summary": "Faded pedestrian crosswalk markings reducing crossing safety.",
     "ai_reason": "Reduced pedestrian visibility and driver compliance.",
     "status": "OPEN",
-    "created_at": "2026-08-08T13:41:25.231Z"
+    "created_at": "2026-08-14T12:28:09.668Z"
   },
   {
     "complaint_id": "CL-0084",
     "description": "Community dustbins have not been cleared this week, overflowing onto the main street.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_84.jpg",
+    "image_url": null,
     "category": "Waste Management",
     "severity": "Critical",
     "department": "Municipal Sanitation",
@@ -1509,7 +1509,7 @@
     "ai_summary": "Community bins uncleared for a week posing hygiene risk.",
     "ai_reason": "Delayed municipal collection leading to odor and street pollution.",
     "status": "OPEN",
-    "created_at": "2026-09-04T06:41:25.231Z"
+    "created_at": "2026-09-10T05:28:09.668Z"
   },
   {
     "complaint_id": "CL-0085",
@@ -1527,7 +1527,7 @@
     "ai_summary": "Deep dangerous pothole threatening two-wheeler safety.",
     "ai_reason": "Direct risk of physical injury and vehicle damage for daily commuters.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-09-02T23:41:25.231Z"
+    "created_at": "2026-09-08T22:28:09.668Z"
   },
   {
     "complaint_id": "CL-0086",
@@ -1545,7 +1545,7 @@
     "ai_summary": "Multi-pole blackout in residential sector impacting night safety.",
     "ai_reason": "General safety and mobility concern for pedestrians after sundown.",
     "status": "OPEN",
-    "created_at": "2026-09-02T16:41:25.231Z"
+    "created_at": "2026-09-08T15:28:09.668Z"
   },
   {
     "complaint_id": "CL-0087",
@@ -1563,12 +1563,12 @@
     "ai_summary": "Underground water line seepage destabilizing pavement.",
     "ai_reason": "Subsurface erosion that could trigger sudden road collapse.",
     "status": "OPEN",
-    "created_at": "2026-09-01T09:41:25.231Z"
+    "created_at": "2026-09-07T08:28:09.668Z"
   },
   {
     "complaint_id": "CL-0088",
     "description": "Collapsed drainage culvert causing waterlogging across both lanes.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_88.jpg",
+    "image_url": null,
     "category": "Drainage",
     "severity": "High",
     "department": "Drainage Department",
@@ -1581,7 +1581,7 @@
     "ai_summary": "Collapsed culvert obstructing neighborhood runoff.",
     "ai_reason": "Blockage of key drainage artery during regular monsoon discharges.",
     "status": "RESOLVED",
-    "created_at": "2026-08-31T02:41:25.231Z"
+    "created_at": "2026-09-06T01:28:09.668Z"
   },
   {
     "complaint_id": "CL-0089",
@@ -1599,7 +1599,7 @@
     "ai_summary": "Animal hazard obstructing critical hospital emergency access.",
     "ai_reason": "Impedes emergency vehicle transit and poses collision risk.",
     "status": "OPEN",
-    "created_at": "2026-08-29T19:41:25.231Z"
+    "created_at": "2026-09-04T18:28:09.668Z"
   },
   {
     "complaint_id": "CL-0090",
@@ -1617,7 +1617,7 @@
     "ai_summary": "Malfunctioning traffic light creating severe junction confusion.",
     "ai_reason": "High probability of right-angle vehicular collisions at junction.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-29T12:41:25.231Z"
+    "created_at": "2026-09-04T11:28:09.668Z"
   },
   {
     "complaint_id": "CL-0091",
@@ -1635,12 +1635,12 @@
     "ai_summary": "Vegetable market waste accumulation requiring immediate clearing.",
     "ai_reason": "High footfall area impacted by rotting organic waste.",
     "status": "OPEN",
-    "created_at": "2026-08-28T05:41:25.231Z"
+    "created_at": "2026-09-03T04:28:09.668Z"
   },
   {
     "complaint_id": "CL-0092",
     "description": "Massive crater formed after recent rains right outside the primary school entrance.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_92.jpg",
+    "image_url": null,
     "category": "Road Damage",
     "severity": "Critical",
     "department": "Roads Department",
@@ -1653,7 +1653,7 @@
     "ai_summary": "Severe road crater directly in front of school entrance.",
     "ai_reason": "High vulnerability zone with children and school buses traversing daily.",
     "status": "OPEN",
-    "created_at": "2026-08-26T22:41:25.231Z"
+    "created_at": "2026-09-01T21:28:09.668Z"
   },
   {
     "complaint_id": "CL-0093",
@@ -1671,7 +1671,7 @@
     "ai_summary": "Structurally compromised streetlight pole posing falling hazard.",
     "ai_reason": "Physical hazard of pole collapsing onto vehicular traffic.",
     "status": "OPEN",
-    "created_at": "2026-08-26T15:41:25.231Z"
+    "created_at": "2026-09-01T14:28:09.668Z"
   },
   {
     "complaint_id": "CL-0094",
@@ -1689,7 +1689,7 @@
     "ai_summary": "High-pressure municipal valve leak wasting potable water.",
     "ai_reason": "Significant resource wastage and pedestrian path disruption.",
     "status": "OPEN",
-    "created_at": "2026-08-25T08:41:25.231Z"
+    "created_at": "2026-08-31T07:28:09.668Z"
   },
   {
     "complaint_id": "CL-0095",
@@ -1707,12 +1707,12 @@
     "ai_summary": "Clogged stormwater drain causing street waterlogging.",
     "ai_reason": "Inundation impairs local traffic flow and damages surrounding infrastructure.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-24T01:41:25.231Z"
+    "created_at": "2026-08-30T00:28:09.668Z"
   },
   {
     "complaint_id": "CL-0096",
     "description": "Damaged pedestrian bridge guardrail over the railway tracks.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_96.jpg",
+    "image_url": null,
     "category": "Public Safety",
     "severity": "Critical",
     "department": "Public Safety Department",
@@ -1725,7 +1725,7 @@
     "ai_summary": "Broken safety guardrail on elevated railway overpass.",
     "ai_reason": "Catastrophic fall risk for commuters using elevated pedestrian walkway.",
     "status": "RESOLVED",
-    "created_at": "2026-08-23T18:41:25.231Z"
+    "created_at": "2026-08-29T17:28:09.668Z"
   },
   {
     "complaint_id": "CL-0097",
@@ -1743,7 +1743,7 @@
     "ai_summary": "Illegal parking obstructing critical emergency transit corridor.",
     "ai_reason": "Delays emergency response ambulances and municipal vehicles.",
     "status": "OPEN",
-    "created_at": "2026-08-22T11:41:25.231Z"
+    "created_at": "2026-08-28T10:28:09.668Z"
   },
   {
     "complaint_id": "CL-0098",
@@ -1761,7 +1761,7 @@
     "ai_summary": "Improperly discarded mixed waste near public recreation area.",
     "ai_reason": "Environmental safety risk in proximity to residential and park areas.",
     "status": "OPEN",
-    "created_at": "2026-08-21T04:41:25.231Z"
+    "created_at": "2026-08-27T03:28:09.668Z"
   },
   {
     "complaint_id": "CL-0099",
@@ -1779,12 +1779,12 @@
     "ai_summary": "Asphalt subsidence near heavy transit bus terminal.",
     "ai_reason": "Transit congestion and risk to heavy public transport vehicles.",
     "status": "OPEN",
-    "created_at": "2026-08-19T21:41:25.231Z"
+    "created_at": "2026-08-25T20:28:09.668Z"
   },
   {
     "complaint_id": "CL-0100",
     "description": "Three consecutive streetlights are completely non-functional creating a dark blindspot.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_100.jpg",
+    "image_url": null,
     "category": "Streetlights",
     "severity": "High",
     "department": "Electrical Department",
@@ -1797,7 +1797,7 @@
     "ai_summary": "Consecutive non-functional streetlights causing dark transit corridor.",
     "ai_reason": "Impaired night visibility increases criminal vulnerability and accident risk.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-19T14:41:25.231Z"
+    "created_at": "2026-08-25T13:28:09.668Z"
   },
   {
     "complaint_id": "CL-0101",
@@ -1815,7 +1815,7 @@
     "ai_summary": "Mainline fracture reducing residential supply volume.",
     "ai_reason": "Essential utility disruption affecting hundreds of households.",
     "status": "OPEN",
-    "created_at": "2026-08-18T07:41:25.231Z"
+    "created_at": "2026-08-24T06:28:09.668Z"
   },
   {
     "complaint_id": "CL-0102",
@@ -1833,7 +1833,7 @@
     "ai_summary": "Uncovered open manhole on active pedestrian sidewalk.",
     "ai_reason": "Severe life-safety hazard for pedestrians and two-wheelers in low light.",
     "status": "OPEN",
-    "created_at": "2026-08-17T00:41:25.231Z"
+    "created_at": "2026-08-22T23:28:09.668Z"
   },
   {
     "complaint_id": "CL-0103",
@@ -1851,12 +1851,12 @@
     "ai_summary": "Hazardous commercial chemical spill on arterial roadway.",
     "ai_reason": "Chemical exposure and vehicle skidding hazard.",
     "status": "OPEN",
-    "created_at": "2026-08-16T17:41:25.231Z"
+    "created_at": "2026-08-22T16:28:09.668Z"
   },
   {
     "complaint_id": "CL-0104",
     "description": "Missing directional signage at complex five-way roundabout causing near-misses.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_104.jpg",
+    "image_url": null,
     "category": "Traffic",
     "severity": "Medium",
     "department": "Traffic Department",
@@ -1869,7 +1869,7 @@
     "ai_summary": "Absence of roundabout signage causing near collisions.",
     "ai_reason": "Confuses unfamiliar drivers leading to dangerous lane switching.",
     "status": "RESOLVED",
-    "created_at": "2026-08-15T10:41:25.231Z"
+    "created_at": "2026-08-21T09:28:09.668Z"
   },
   {
     "complaint_id": "CL-0105",
@@ -1887,7 +1887,7 @@
     "ai_summary": "Overflowing residential garbage creating sanitation concerns.",
     "ai_reason": "Prolonged accumulation creates public health hazards and pest breeding.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-14T03:41:25.231Z"
+    "created_at": "2026-08-20T02:28:09.668Z"
   },
   {
     "complaint_id": "CL-0106",
@@ -1905,7 +1905,7 @@
     "ai_summary": "Loose gravel and surface degradation at active crossing.",
     "ai_reason": "Slipping hazard during braking at a high-volume traffic node.",
     "status": "OPEN",
-    "created_at": "2026-08-12T20:41:25.231Z"
+    "created_at": "2026-08-18T19:28:09.668Z"
   },
   {
     "complaint_id": "CL-0107",
@@ -1923,12 +1923,12 @@
     "ai_summary": "Faulty flickering streetlight fixture with electrical buzz.",
     "ai_reason": "Minor electrical defect causing public nuisance and visual distraction.",
     "status": "OPEN",
-    "created_at": "2026-08-12T13:41:25.231Z"
+    "created_at": "2026-08-18T12:28:09.668Z"
   },
   {
     "complaint_id": "CL-0108",
     "description": "Contaminated water backflow mixing near damaged supply pipe joint.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_108.jpg",
+    "image_url": null,
     "category": "Water Leakage",
     "severity": "Critical",
     "department": "Water Department",
@@ -1941,7 +1941,7 @@
     "ai_summary": "Cross-contamination risk from cracked water supply conduit.",
     "ai_reason": "Immediate threat to community health from potential potable water contamination.",
     "status": "OPEN",
-    "created_at": "2026-08-11T06:41:25.231Z"
+    "created_at": "2026-08-17T05:28:09.668Z"
   },
   {
     "complaint_id": "CL-0109",
@@ -1959,7 +1959,7 @@
     "ai_summary": "Severe sewage backflow into residential properties.",
     "ai_reason": "Acute biohazard and property damage demanding emergency intervention.",
     "status": "OPEN",
-    "created_at": "2026-08-09T23:41:25.231Z"
+    "created_at": "2026-08-15T22:28:09.668Z"
   },
   {
     "complaint_id": "CL-0110",
@@ -1977,7 +1977,7 @@
     "ai_summary": "Tree branch dangerously resting on live power lines.",
     "ai_reason": "Imminent fire and power grid disruption risk.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-08-09T16:41:25.231Z"
+    "created_at": "2026-08-15T15:28:09.668Z"
   },
   {
     "complaint_id": "CL-0111",
@@ -1995,12 +1995,12 @@
     "ai_summary": "Stalled heavy vehicle blocking primary thoroughfare.",
     "ai_reason": "Bottleneck generating kilometers of peak-hour commuter gridlock.",
     "status": "OPEN",
-    "created_at": "2026-08-08T09:41:25.231Z"
+    "created_at": "2026-08-14T08:28:09.668Z"
   },
   {
     "complaint_id": "CL-0112",
     "description": "Open dumping along the market sidewalk blocking pedestrians and attracting stray animals.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_112.jpg",
+    "image_url": null,
     "category": "Waste Management",
     "severity": "High",
     "department": "Municipal Sanitation",
@@ -2013,7 +2013,7 @@
     "ai_summary": "Sidewalk blocked by illegal commercial waste dumping.",
     "ai_reason": "Obstruction of pedestrian pathways and degradation of neighborhood cleanliness.",
     "status": "RESOLVED",
-    "created_at": "2026-09-04T02:41:25.231Z"
+    "created_at": "2026-09-10T01:28:09.668Z"
   },
   {
     "complaint_id": "CL-0113",
@@ -2031,7 +2031,7 @@
     "ai_summary": "Road surface cave-in presenting severe vehicle collision danger.",
     "ai_reason": "Structural collapse requiring immediate barricading and emergency repair.",
     "status": "OPEN",
-    "created_at": "2026-09-02T19:41:25.231Z"
+    "created_at": "2026-09-08T18:28:09.668Z"
   },
   {
     "complaint_id": "CL-0114",
@@ -2049,7 +2049,7 @@
     "ai_summary": "Exposed live electrical wiring at public street pole base.",
     "ai_reason": "Critical electrocution hazard requiring urgent electrical shutdown and repair.",
     "status": "OPEN",
-    "created_at": "2026-09-02T12:41:25.231Z"
+    "created_at": "2026-09-08T11:28:09.668Z"
   },
   {
     "complaint_id": "CL-0115",
@@ -2067,12 +2067,12 @@
     "ai_summary": "Major drinking water pipeline rupture causing roadway flooding.",
     "ai_reason": "Massive loss of treated drinking water and severe street submergence.",
     "status": "IN_PROGRESS",
-    "created_at": "2026-09-01T05:41:25.231Z"
+    "created_at": "2026-09-07T04:28:09.668Z"
   },
   {
     "complaint_id": "CL-0116",
     "description": "Stagnant blackwater pool in roadside ditch emitting foul odor and breeding mosquitoes.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_116.jpg",
+    "image_url": null,
     "category": "Drainage",
     "severity": "Medium",
     "department": "Drainage Department",
@@ -2085,7 +2085,7 @@
     "ai_summary": "Stagnant roadside wastewater breeding disease vectors.",
     "ai_reason": "Vector-borne disease risk including dengue and malaria.",
     "status": "OPEN",
-    "created_at": "2026-08-30T22:41:25.231Z"
+    "created_at": "2026-09-05T21:28:09.668Z"
   },
   {
     "complaint_id": "CL-0117",
@@ -2103,7 +2103,7 @@
     "ai_summary": "Hazardous unguarded construction debris on pedestrian pathway.",
     "ai_reason": "Presents puncture and injury risks to daily walkers and children.",
     "status": "OPEN",
-    "created_at": "2026-08-30T15:41:25.231Z"
+    "created_at": "2026-09-05T14:28:09.668Z"
   },
   {
     "complaint_id": "CL-0118",
@@ -2121,7 +2121,7 @@
     "ai_summary": "Faded pedestrian crosswalk markings reducing crossing safety.",
     "ai_reason": "Reduced pedestrian visibility and driver compliance.",
     "status": "OPEN",
-    "created_at": "2026-08-29T08:41:25.231Z"
+    "created_at": "2026-09-04T07:28:09.668Z"
   },
   {
     "complaint_id": "CL-0119",
@@ -2139,12 +2139,12 @@
     "ai_summary": "Community bins uncleared for a week posing hygiene risk.",
     "ai_reason": "Delayed municipal collection leading to odor and street pollution.",
     "status": "OPEN",
-    "created_at": "2026-08-28T01:41:25.231Z"
+    "created_at": "2026-09-03T00:28:09.668Z"
   },
   {
     "complaint_id": "CL-0120",
     "description": "Deep pothole on the right lane causing two-wheelers to skid and lose balance.",
-    "image_url": "https://storage.googleapis.com/civiclens-demo/complaint_120.jpg",
+    "image_url": null,
     "category": "Road Damage",
     "severity": "High",
     "department": "Roads Department",
@@ -2157,6 +2157,6 @@
     "ai_summary": "Deep dangerous pothole threatening two-wheeler safety.",
     "ai_reason": "Direct risk of physical injury and vehicle damage for daily commuters.",
     "status": "RESOLVED",
-    "created_at": "2026-08-27T18:41:25.231Z"
+    "created_at": "2026-09-02T17:28:09.668Z"
   }
 ]

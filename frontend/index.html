@@ -91,24 +91,19 @@
             </div>
           </div>
 
-          <!-- Location Name -->
+          <!-- Google Maps Location Picker -->
           <div class="form-group">
             <label class="form-label" for="locationName">Location / Landmark *</label>
             <input type="text" id="locationName" name="locationName" class="form-control"
-              placeholder="e.g. Sector 15 Main Market, Near School Gate" required>
-          </div>
-
-          <!-- Coordinates -->
-          <div class="form-row">
-            <div class="form-group">
-              <label class="form-label" for="latitude">Latitude *</label>
-              <input type="number" step="any" id="latitude" name="latitude" class="form-control" placeholder="28.5355"
-                required>
+              placeholder="Search for an address or drop a pin on the map" autocomplete="street-address" required>
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
+            <p id="locationHelp" class="location-map-help">Click the map to drop a pin, search for an address, or use your current location.</p>
+            <div id="locationMap" class="location-map-preview" role="application" aria-label="Google Maps location picker">
+              <div id="locationMapEmpty" class="location-map-empty">Loading Google Maps…</div>
             </div>
-            <div class="form-group">
-              <label class="form-label" for="longitude">Longitude *</label>
-              <input type="number" step="any" id="longitude" name="longitude" class="form-control" placeholder="77.3910"
-                required>
+            <div class="location-map-actions">
+              <button type="button" id="useMyLocation" class="location-map-button">Use my current location</button>
             </div>
           </div>
 

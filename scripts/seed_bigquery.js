@@ -295,7 +295,7 @@ function generateRecords(total = 120) {
     rows.push({
       complaint_id:    `CL-${String(i).padStart(4, '0')}`,
       description:     t.descriptions[vi],
-      image_url:       i % 4 === 0 ? `https://storage.googleapis.com/civiclens-demo/complaint_${i}.jpg` : null,
+      image_url:       null,
       category,
       severity:        t.severities[vi],
       department:      DEPARTMENTS[category] || 'General Municipal Services',

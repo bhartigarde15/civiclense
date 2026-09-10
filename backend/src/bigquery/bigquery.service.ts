@@ -141,6 +141,31 @@ export class BigQueryService implements OnModuleInit {
     return found ? { ...found } : null;
   }
 
+  async updateComplaintStatus(
+    complaintId: string,
+    status: ComplaintRecord['status'],
+  ): Promise<void> {
+    // Keep the local analytical fallback consistent even when BigQuery is enabled.
+    const fallbackComplaint = this.fallbackStore.find(
+      (complaint) => complaint.complaint_id === complaintId,
+    );
+    if (fallbackComplaint) fallbackComplaint.status = status;
+
+    if (!this.isClientReady || !this.bigquery) return;
+
+    try {
+      await this.bigquery.query({
+        query: `UPDATE ${this.fullTableName} SET status = @status WHERE complaint_id = @complaintId`,
+        params: { complaintId, status },
+      });
+      this.logger.log(`Updated complaint ${complaintId} status to ${status} in BigQuery`);
+    } catch (error) {
+      this.logger.warn(
+        `Failed to update complaint ${complaintId} status in BigQuery; local fallback was updated: ${error.message}`,
+      );
+    }
+  }
+
   async getComplaints(limit = 50, offset = 0): Promise<ComplaintRecord[]> {
     if (this.isClientReady && this.bigquery) {
       try {
