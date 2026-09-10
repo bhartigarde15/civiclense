@@ -1,5 +1,29 @@
 // CivicLens Frontend Client Logic
 const API_BASE = window.location.origin;
+const THEME_STORAGE_KEY = 'civiclens_theme';
+
+function initializeTheme() {
+  applyTheme(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light', false);
+}
+
+function toggleTheme() {
+  applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+}
+
+function applyTheme(theme, persist = true) {
+  document.documentElement.dataset.theme = theme;
+  if (persist) localStorage.setItem(THEME_STORAGE_KEY, theme);
+
+  const toggle = document.getElementById('themeToggle');
+  if (toggle) {
+    const isDark = theme === 'dark';
+    toggle.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+    toggle.setAttribute('aria-label', `Switch to ${isDark ? 'light' : 'dark'} theme`);
+    toggle.setAttribute('aria-pressed', String(isDark));
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initializeTheme);
 
 // Preset Scenarios for Rapid Hackathon Demonstrations
 const DEMO_SCENARIOS = {
@@ -242,12 +266,34 @@ function handleLogout() {
 // ==========================================
 let allDashboardComplaints = [];
 let dashboardRefreshInProgress = false;
+const complaintQueueState = {
+  page: 1,
+  pageSize: 10,
+};
 
 function setDashboardLoading(isLoading) {
   const loadingOverlay = document.getElementById('dashboardLoadingOverlay');
   const dashboardView = document.getElementById('dashboardView');
   if (loadingOverlay) loadingOverlay.hidden = !isLoading;
   if (dashboardView) dashboardView.setAttribute('aria-busy', String(isLoading));
+}
+
+function switchDashboardTab(tabName) {
+  const analyticsPanel = document.getElementById('analyticsPanel');
+  const actionsPanel = document.getElementById('actionsPanel');
+  const analyticsTab = document.getElementById('analyticsTab');
+  const actionsTab = document.getElementById('actionsTab');
+  if (!analyticsPanel || !actionsPanel || !analyticsTab || !actionsTab) return;
+
+  const showActions = tabName === 'actions';
+  analyticsPanel.hidden = showActions;
+  actionsPanel.hidden = !showActions;
+  analyticsTab.classList.toggle('is-active', !showActions);
+  actionsTab.classList.toggle('is-active', showActions);
+  analyticsTab.setAttribute('aria-selected', String(!showActions));
+  actionsTab.setAttribute('aria-selected', String(showActions));
+
+  if (showActions) document.getElementById('complaintFilterInput')?.focus();
 }
 
 async function loadDashboardData({ showLoadingOverlay = false } = {}) {
@@ -286,7 +332,9 @@ async function loadDashboardData({ showLoadingOverlay = false } = {}) {
       renderHotspots,
       (complaints) => {
         allDashboardComplaints = complaints;
-        renderComplaintsTable(allDashboardComplaints);
+        populateComplaintCategoryFilter();
+        populateComplaintStatusFilter();
+        renderComplaintsTable();
       },
     ];
 
@@ -429,10 +477,19 @@ function renderDepartments(departments) {
     .join('');
 }
 
-function renderComplaintsTable(complaints) {
+function renderComplaintsTable() {
   const tbody = document.getElementById('complaintsTableBody');
-  if (!complaints || complaints.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color: var(--gray-mid);">No complaints currently in queue.</td></tr>`;
+  if (!tbody) return;
+
+  const complaints = getFilteredAndSortedComplaints();
+  const totalPages = Math.max(1, Math.ceil(complaints.length / complaintQueueState.pageSize));
+  complaintQueueState.page = Math.min(complaintQueueState.page, totalPages);
+  const startIndex = (complaintQueueState.page - 1) * complaintQueueState.pageSize;
+  const pageComplaints = complaints.slice(startIndex, startIndex + complaintQueueState.pageSize);
+
+  if (complaints.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; color: var(--gray-mid);">No complaints currently in queue.</td></tr>`;
+    renderComplaintPagination(0, 0, 0);
     return;
   }
 
@@ -443,10 +500,16 @@ function renderComplaintsTable(complaints) {
     Low: 'badge-low',
   };
 
-  tbody.innerHTML = complaints
+  tbody.innerHTML = pageComplaints
     .map((c) => {
       const dateStr = c.created_at ? new Date(c.created_at).toLocaleDateString() : 'Today';
       const scoreColor = c.priority_score >= 75 ? 'var(--danger)' : c.priority_score >= 50 ? '#b06000' : 'var(--accent)';
+      const imageUrl = getComplaintImageUrl(c.image_url, c.complaint_id);
+      const imageCell = imageUrl
+        ? `<a class="complaint-photo-link" href="${imageUrl}" target="_blank" rel="noopener noreferrer" aria-label="View photo for complaint ${escapeHtml(c.complaint_id)}">
+             <img class="complaint-photo-thumbnail" src="${imageUrl}" alt="Citizen-uploaded photo for complaint ${escapeHtml(c.complaint_id)}" loading="lazy">
+           </a>`
+        : '<span class="complaint-photo-empty">No photo</span>';
       return `
       <tr>
         <td><code>${c.complaint_id}</code></td>
@@ -456,28 +519,146 @@ function renderComplaintsTable(complaints) {
         <td><strong style="color: ${scoreColor}; font-size: 0.95rem;">${c.priority_score}</strong>/100</td>
         <td>${c.duplicate_count > 0 ? `<span style="color:#c53929; font-weight:700;">${c.duplicate_count}</span>` : '0'}</td>
         <td><span class="badge badge-low">${c.status || 'OPEN'}</span></td>
+        <td>${imageCell}</td>
         <td style="font-size: 0.8rem; color: var(--gray-mid);">${dateStr}</td>
       </tr>
     `;
     })
     .join('');
+
+  renderComplaintPagination(complaints.length, totalPages, startIndex);
+}
+
+function getComplaintImageUrl(imageUrl, complaintId) {
+  if (!imageUrl || typeof imageUrl !== 'string') return null;
+
+  try {
+    const url = new URL(imageUrl, window.location.origin);
+    const isLocalUpload = url.origin === window.location.origin && url.pathname.startsWith('/uploads/');
+    if (isLocalUpload) return url.href;
+    if (url.protocol === 'https:' && complaintId) {
+      return `${API_BASE}/api/complaints/${encodeURIComponent(complaintId)}/image`;
+    }
+  } catch (_) {
+    // Invalid URLs are treated as records without an available image.
+  }
+  return null;
+}
+
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 function filterComplaintsTable() {
-  const query = document.getElementById('complaintFilterInput').value.toLowerCase();
-  if (!query) {
-    renderComplaintsTable(allDashboardComplaints);
-    return;
-  }
+  complaintQueueState.page = 1;
+  renderComplaintsTable();
+}
+
+function sortComplaintsTable() {
+  complaintQueueState.page = 1;
+  renderComplaintsTable();
+}
+
+function getFilteredAndSortedComplaints() {
+  const query = document.getElementById('complaintFilterInput')?.value.trim().toLowerCase() || '';
+  const category = document.getElementById('complaintCategoryFilter')?.value || '';
+  const severity = document.getElementById('complaintSeverityFilter')?.value || '';
+  const status = document.getElementById('complaintStatusFilter')?.value || '';
+  const sort = document.getElementById('complaintSortSelect')?.value || 'priority-desc';
 
   const filtered = allDashboardComplaints.filter(
     (c) =>
-      c.complaint_id.toLowerCase().includes(query) ||
-      c.category.toLowerCase().includes(query) ||
-      c.location_name.toLowerCase().includes(query) ||
-      c.severity.toLowerCase().includes(query) ||
-      (c.description && c.description.toLowerCase().includes(query)),
+      (!query ||
+        c.complaint_id.toLowerCase().includes(query) ||
+        c.category.toLowerCase().includes(query) ||
+        c.location_name.toLowerCase().includes(query) ||
+        c.severity.toLowerCase().includes(query) ||
+        (c.description && c.description.toLowerCase().includes(query))) &&
+      (!category || c.category === category) &&
+      (!severity || c.severity === severity) &&
+      (!status || (c.status || 'OPEN') === status),
   );
 
-  renderComplaintsTable(filtered);
+  return filtered.sort((a, b) => {
+    switch (sort) {
+      case 'priority-asc':
+        return a.priority_score - b.priority_score;
+      case 'newest':
+        return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+      case 'oldest':
+        return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+      case 'location':
+        return (a.location_name || '').localeCompare(b.location_name || '');
+      case 'priority-desc':
+      default:
+        return b.priority_score - a.priority_score;
+    }
+  });
+}
+
+function populateComplaintCategoryFilter() {
+  const select = document.getElementById('complaintCategoryFilter');
+  if (!select) return;
+
+  const selectedCategory = select.value;
+  const categories = [...new Set(allDashboardComplaints.map((c) => c.category).filter(Boolean))].sort();
+  select.innerHTML = '<option value="">All categories</option>' + categories
+    .map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
+    .join('');
+  select.value = categories.includes(selectedCategory) ? selectedCategory : '';
+}
+
+function populateComplaintStatusFilter() {
+  const select = document.getElementById('complaintStatusFilter');
+  if (!select) return;
+
+  const selectedStatus = select.value;
+  const statuses = [...new Set(allDashboardComplaints.map((c) => c.status || 'OPEN'))].sort();
+  select.innerHTML = '<option value="">All statuses</option>' + statuses
+    .map((status) => `<option value="${escapeHtml(status)}">${escapeHtml(status)}</option>`)
+    .join('');
+  select.value = statuses.includes(selectedStatus) ? selectedStatus : '';
+}
+
+function setComplaintQueuePage(page) {
+  complaintQueueState.page = Math.max(1, page);
+  renderComplaintsTable();
+}
+
+function setComplaintQueuePageSize(pageSize) {
+  complaintQueueState.pageSize = Number(pageSize);
+  complaintQueueState.page = 1;
+  renderComplaintsTable();
+}
+
+function renderComplaintPagination(total, totalPages, startIndex) {
+  const pagination = document.getElementById('complaintPagination');
+  if (!pagination) return;
+
+  if (!total) {
+    pagination.innerHTML = '';
+    return;
+  }
+
+  const endIndex = Math.min(startIndex + complaintQueueState.pageSize, total);
+  const pageButtons = Array.from({ length: totalPages }, (_, index) => {
+    const page = index + 1;
+    return `<button type="button" class="queue-page-button ${page === complaintQueueState.page ? 'is-active' : ''}" onclick="setComplaintQueuePage(${page})" aria-label="Page ${page}" ${page === complaintQueueState.page ? 'aria-current="page"' : ''}>${page}</button>`;
+  }).join('');
+
+  pagination.innerHTML = `
+    <span class="queue-results-count">Showing ${startIndex + 1}–${endIndex} of ${total}</span>
+    <div class="queue-pagination-actions">
+      <label>Rows <select onchange="setComplaintQueuePageSize(this.value)" aria-label="Rows per page">
+        ${[10, 25, 50].map((size) => `<option value="${size}" ${size === complaintQueueState.pageSize ? 'selected' : ''}>${size}</option>`).join('')}
+      </select></label>
+      <button type="button" class="queue-page-button" onclick="setComplaintQueuePage(${complaintQueueState.page - 1})" ${complaintQueueState.page === 1 ? 'disabled' : ''}>Previous</button>
+      <span class="queue-page-numbers">${pageButtons}</span>
+      <button type="button" class="queue-page-button" onclick="setComplaintQueuePage(${complaintQueueState.page + 1})" ${complaintQueueState.page === totalPages ? 'disabled' : ''}>Next</button>
+    </div>`;
 }

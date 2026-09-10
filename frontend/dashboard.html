@@ -9,6 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem('civiclens_theme');
+      document.documentElement.dataset.theme = savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    })();
+  </script>
 </head>
 <body>
 
@@ -22,6 +28,7 @@
       </div>
     </a>
     <nav class="nav-links">
+      <button id="themeToggle" type="button" class="nav-btn nav-btn-secondary" onclick="toggleTheme()" aria-label="Switch color theme"></button>
       <div id="authenticatedUserNav" style="display: none; align-items: center; gap: 0.75rem;">
         <div class="user-chip">
           <span>🏛️</span>
@@ -109,6 +116,12 @@
       </div>
     </div>
 
+    <div class="dashboard-tabs" role="tablist" aria-label="Municipal dashboard sections">
+      <button id="analyticsTab" type="button" class="dashboard-tab is-active" role="tab" aria-selected="true" aria-controls="analyticsPanel" onclick="switchDashboardTab('analytics')">📊 Analytics overview</button>
+      <button id="actionsTab" type="button" class="dashboard-tab" role="tab" aria-selected="false" aria-controls="actionsPanel" onclick="switchDashboardTab('actions')">🎯 Action queue</button>
+    </div>
+
+    <section id="analyticsPanel" role="tabpanel" aria-labelledby="analyticsTab">
     <!-- 5 KPI Summary Cards -->
     <div class="kpi-grid">
       <div class="kpi-card">
@@ -225,21 +238,39 @@
         </div>
       </div>
     </div>
+    </section>
 
     <!-- High Priority Action Table -->
-    <div class="card" style="margin-top: 1.5rem;">
-      <div class="card-header">
+    <section id="actionsPanel" role="tabpanel" aria-labelledby="actionsTab" hidden>
+    <div class="card">
+      <div class="card-header action-queue-header">
         <div>
           <h3 class="card-title">🎯 Priority Operational Action Queue</h3>
           <p style="font-size: 0.85rem; color: var(--gray-mid); margin-top: 0.2rem;">Live municipal complaint queue sorted by priority score.</p>
         </div>
-        <input
-          type="text"
-          id="complaintFilterInput"
-          placeholder="Filter by keyword or location..."
-          oninput="filterComplaintsTable()"
-          style="padding: 0.45rem 0.85rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-size: 0.85rem;"
-        >
+        <div class="queue-controls">
+          <input type="search" id="complaintFilterInput" placeholder="Search ID, issue, or location..." oninput="filterComplaintsTable()" aria-label="Search complaints">
+          <select id="complaintCategoryFilter" onchange="filterComplaintsTable()" aria-label="Filter by category">
+            <option value="">All categories</option>
+          </select>
+          <select id="complaintSeverityFilter" onchange="filterComplaintsTable()" aria-label="Filter by severity">
+            <option value="">All severities</option>
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+          <select id="complaintStatusFilter" onchange="filterComplaintsTable()" aria-label="Filter by status">
+            <option value="">All statuses</option>
+          </select>
+          <select id="complaintSortSelect" onchange="sortComplaintsTable()" aria-label="Sort complaints">
+            <option value="priority-desc">Priority: high to low</option>
+            <option value="priority-asc">Priority: low to high</option>
+            <option value="newest">Created: newest first</option>
+            <option value="oldest">Created: oldest first</option>
+            <option value="location">Location: A to Z</option>
+          </select>
+        </div>
       </div>
 
       <div class="table-responsive">
@@ -253,15 +284,18 @@
               <th>Priority Score</th>
               <th>Duplicates</th>
               <th>Status</th>
+              <th>Photo</th>
               <th>Created</th>
             </tr>
           </thead>
           <tbody id="complaintsTableBody">
-            <tr><td colspan="8" style="text-align: center; color: var(--gray-mid);">Loading complaints queue...</td></tr>
+            <tr><td colspan="9" style="text-align: center; color: var(--gray-mid);">Loading complaints queue...</td></tr>
           </tbody>
         </table>
       </div>
+      <div id="complaintPagination" class="queue-pagination" aria-label="Complaint queue pagination"></div>
     </div>
+    </section>
 
     <!-- Bottom Actions & Logout Section -->
     <div class="card" style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #fff;">

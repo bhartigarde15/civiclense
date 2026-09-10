@@ -9,8 +9,10 @@ import {
   UploadedFile,
   ParseIntPipe,
   DefaultValuePipe,
+  Res,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Response } from 'express';
 import { ComplaintsService } from './complaints.service';
 import { CreateComplaintDto } from './dto/create-complaint.dto';
 
@@ -33,6 +35,16 @@ export class ComplaintsController {
     @Query('offset', new DefaultValuePipe(0), ParseIntPipe) offset: number,
   ) {
     return this.complaintsService.getComplaints(limit, offset);
+  }
+
+  @Get(':id/image')
+  async getComplaintImage(@Param('id') id: string, @Res() response: Response) {
+    const image = await this.complaintsService.getComplaintImage(id);
+    response.set({
+      'Content-Type': image.contentType,
+      'Cache-Control': 'private, max-age=3600',
+    });
+    return response.send(image.data);
   }
 
   @Get(':id')

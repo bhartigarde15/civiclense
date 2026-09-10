@@ -7,7 +7,7 @@ steps:
       - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/civiclens-api:$COMMIT_SHA'
       - '-t'
       - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/civiclens-api:latest'
-      - './backend'
+      - '.'
 
   # 2. Push Container Image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
@@ -26,7 +26,7 @@ steps:
       - '--region=$_LOCATION'
       - '--platform=managed'
       - '--allow-unauthenticated'
-      - '--set-env-vars=BIGQUERY_DATASET=civiclens,BIGQUERY_TABLE=complaints,GOOGLE_CLOUD_LOCATION=$_LOCATION'
+      - '--set-env-vars=BIGQUERY_DATASET=civiclens,BIGQUERY_TABLE=complaints,GOOGLE_CLOUD_LOCATION=$_LOCATION,GCS_BUCKET=$_GCS_BUCKET'
 
 images:
   - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/civiclens-api:$COMMIT_SHA'
@@ -35,6 +35,7 @@ images:
 substitutions:
   _LOCATION: 'us-central1'
   _REPOSITORY: 'civiclens-repo'
+  _GCS_BUCKET: 'civiclens-storage-project-3b55a766-1cc5-42a3-a85'
 
 options:
   logging: CLOUD_LOGGING_ONLY

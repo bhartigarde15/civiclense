@@ -10,6 +10,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem('civiclens_theme');
+      document.documentElement.dataset.theme = savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    })();
+  </script>
 </head>
 
 <body>
@@ -24,6 +30,7 @@
       </div>
     </a>
     <nav class="nav-links">
+      <button id="themeToggle" type="button" class="nav-btn nav-btn-secondary" onclick="toggleTheme()" aria-label="Switch color theme"></button>
       <a href="index.html" class="nav-btn nav-btn-primary">Citizen Portal</a>
       <a href="dashboard.html" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-secondary">Municipal
         Dashboard ↗</a>

@@ -1,4 +1,4 @@
-import { Injectable, Logger, BadRequestException } from '@nestjs/common';
+import { Injectable, Logger, BadRequestException, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Storage } from '@google-cloud/storage';
 import * as path from 'path';
@@ -87,5 +87,66 @@ export class StorageService {
     const mockUrl = `/uploads/${path.basename(localFilePath)}`;
     this.logger.log(`Saved complaint image locally: ${mockUrl}`);
     return mockUrl;
+  }
+
+  /**
+   * Retrieves a private complaint image through the Cloud Storage SDK. This is
+   * the Cloud Storage equivalent of AWS S3's getObject: the browser never has
+   * to rely on an expiring Console download link or public bucket access.
+   */
+  async getComplaintImage(imageReference: string): Promise<{ data: Buffer; contentType: string }> {
+    if (!this.storage || !this.bucketName) {
+      throw new NotFoundException('Cloud Storage is not configured for complaint images.');
+    }
+
+    const objectName = this.getComplaintObjectName(imageReference);
+    if (!objectName) {
+      throw new NotFoundException('The complaint image reference is invalid.');
+    }
+
+    try {
+      const file = this.storage.bucket(this.bucketName).file(objectName);
+      const [[data], [metadata]] = await Promise.all([file.download(), file.getMetadata()]);
+      return {
+        data,
+        contentType: metadata.contentType || 'application/octet-stream',
+      };
+    } catch (error) {
+      this.logger.warn(`Unable to retrieve complaint image '${objectName}': ${error.message}`);
+      throw new NotFoundException('The complaint image could not be retrieved from Cloud Storage.');
+    }
+  }
+
+  private getComplaintObjectName(imageReference: string): string | null {
+    let objectName: string | null = null;
+
+    if (imageReference.startsWith('complaints/')) {
+      objectName = imageReference;
+    } else {
+      try {
+        const url = new URL(imageReference);
+        const pathParts = url.pathname.split('/').filter(Boolean);
+
+        if (url.hostname === 'storage.googleapis.com' && pathParts[0] === this.bucketName) {
+          objectName = pathParts.slice(1).join('/');
+        } else {
+          // Supports Google API and Console download URLs such as
+          // .../storage/v1/b/<bucket>/o/complaints%2F<file>.jpeg.
+          const bucketIndex = pathParts.lastIndexOf('b');
+          const objectIndex = pathParts.lastIndexOf('o');
+          if (bucketIndex >= 0 && objectIndex === bucketIndex + 2 && pathParts[bucketIndex + 1] === this.bucketName) {
+            objectName = pathParts.slice(objectIndex + 1).join('/');
+          }
+        }
+      } catch (_) {
+        return null;
+      }
+    }
+
+    if (!objectName) return null;
+    const decodedObjectName = decodeURIComponent(objectName);
+    return decodedObjectName.startsWith('complaints/') && !decodedObjectName.includes('..')
+      ? decodedObjectName
+      : null;
   }
 }

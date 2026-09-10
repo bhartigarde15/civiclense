@@ -36,9 +36,8 @@ async function bootstrap() {
 
   // Serve local uploads if present
   const uploadsDir = path.join(process.cwd(), 'uploads');
-  if (fs.existsSync(uploadsDir)) {
-    app.useStaticAssets(uploadsDir, { prefix: '/uploads' });
-  }
+  fs.mkdirSync(uploadsDir, { recursive: true });
+  app.useStaticAssets(uploadsDir, { prefix: '/uploads' });
 
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT') || process.env.PORT || 8080;

@@ -114,4 +114,12 @@ export class ComplaintsService {
     }
     return complaint;
   }
+
+  async getComplaintImage(id: string): Promise<{ data: Buffer; contentType: string }> {
+    const complaint = await this.getComplaintById(id);
+    if (!complaint.image_url) {
+      throw new NotFoundException(`Complaint with ID '${id}' does not have an uploaded image.`);
+    }
+    return this.storageService.getComplaintImage(complaint.image_url);
+  }
 }
