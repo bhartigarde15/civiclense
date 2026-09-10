@@ -196,7 +196,7 @@ async function handleComplaintSubmit(event) {
   const submitBtn = document.getElementById('submitBtn');
   const originalBtnHtml = submitBtn.innerHTML;
   submitBtn.disabled = true;
-  submitBtn.innerHTML = `<span class="spinner"></span> <span>Analyzing Complaint...</span>`;
+  submitBtn.innerHTML = `<span class="spinner"></span> <span>Raising Complaint...</span>`;
 
   try {
     const form = document.getElementById('complaintForm');
@@ -261,6 +261,27 @@ function renderAnalysisResult(data) {
 
   // Smooth scroll into view on mobile
   document.getElementById('analysisCard').scrollIntoView({ behavior: 'smooth' });
+}
+
+function startNewComplaint() {
+  const form = document.getElementById('complaintForm');
+  form.reset();
+  document.getElementById('filePreview').textContent = '';
+  document.getElementById('latitude').value = '';
+  document.getElementById('longitude').value = '';
+
+  if (googleMapMarker) googleMapMarker.setMap(null);
+  googleMapMarker = undefined;
+  if (googleMap) {
+    googleMap.panTo(DEFAULT_MAP_CENTER);
+    googleMap.setZoom(14);
+  }
+
+  document.getElementById('resultContent').style.display = 'none';
+  document.getElementById('resultPlaceholder').style.display = 'block';
+  document.getElementById('complaintStatusBadge').style.display = 'none';
+  document.getElementById('description').focus();
+  document.getElementById('complaintForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ==========================================

@@ -116,7 +116,7 @@
 
           <!-- Submit Button -->
           <button type="submit" id="submitBtn" class="btn btn-primary">
-            <span>⚡ Analyze Complaint</span>
+            <span>⚡ Raise Complaint</span>
           </button>
         </form>
       </div>
@@ -199,9 +199,10 @@
           <div
             style="display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--gray-light); font-size: 0.8rem; color: var(--gray-mid);">
             <div>Complaint ID: <strong id="resComplaintId" style="color: var(--dark);">—</strong></div>
-            <a href="dashboard.html" target="_blank" rel="noopener noreferrer"
-              style="color: var(--primary); font-weight: 600; text-decoration: none;">View in Municipal Dashboard ↗</a>
           </div>
+          <button type="button" id="newComplaintBtn" class="btn btn-primary" style="margin-top: 1rem;" onclick="startNewComplaint()">
+            <span>＋ New Complaint</span>
+          </button>
         </div>
 
       </div>
