@@ -609,6 +609,12 @@ tr:hover td {
   background: rgba(255, 255, 255, 0.92);
 }
 
+/* The author display rule above takes precedence over the browser's [hidden]
+   default, so explicitly honor the attribute used by app.js. */
+.dashboard-loading-overlay[hidden] {
+  display: none;
+}
+
 .dashboard-loading-content {
   display: flex;
   align-items: center;
