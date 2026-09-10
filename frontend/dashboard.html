@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicLens — Municipal Intelligence Dashboard</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <a href="dashboard.html" class="brand">
+      <div class="brand-icon">CL</div>
+      <div class="brand-text">
+        <h1>CivicLens Municipal Intelligence</h1>
+        <span>City Operations Command Center</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <div id="authenticatedUserNav" style="display: none; align-items: center; gap: 0.75rem;">
+        <div class="user-chip">
+          <span>🏛️</span>
+          <span id="officerNameDisplay">Municipal Admin</span>
+        </div>
+        <button id="refreshDashboardBtn" type="button" class="nav-btn nav-btn-secondary" onclick="loadDashboardData()">🔄 Refresh</button>
+        <button type="button" class="nav-btn nav-btn-secondary" onclick="handleLogout()" aria-label="End municipal session" style="color: var(--danger);">Logout</button>
+      </div>
+      <a href="index.html" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-primary">Citizen Portal ↗</a>
+    </nav>
+  </header>
+
+  <!-- View 1: Municipal Officer Login Screen -->
+  <div id="loginView" class="auth-wrapper">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-badge">🔒 Municipal Official Access</div>
+        <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--dark); margin-bottom: 0.35rem;">Municipal Officer Login</h2>
+        <p style="font-size: 0.85rem; color: var(--gray-mid);">Sign in with your department credentials to access real-time civic intelligence and priority queues.</p>
+      </div>
+
+      <!-- Demo Credentials Helper Box -->
+      <div class="demo-credentials-box">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+          <strong style="color: var(--primary-dark);">✨ Demo Credentials:</strong>
+          <button type="button" class="pill-btn" onclick="fillAdminCredentials()">1-Click Fill</button>
+        </div>
+        <div>User: <code>admin@city.gov</code></div>
+        <div>Password: <code>civicadmin2026</code></div>
+      </div>
+
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="username">Officer Email / Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            placeholder="admin@city.gov"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="••••••••••••"
+            required
+          >
+        </div>
+
+        <div id="loginError" style="display: none; color: var(--danger); font-size: 0.85rem; margin-bottom: 1rem; font-weight: 600;">
+          Invalid credentials. Please try again.
+        </div>
+
+        <button type="submit" id="loginBtn" class="btn btn-primary">
+          <span>🚀 Sign In to Command Center</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- View 2: Protected Municipal Dashboard View -->
+  <main id="dashboardView" class="container" style="display: none;">
+    <div id="dashboardLoadingOverlay" class="dashboard-loading-overlay" role="status" aria-live="polite" hidden>
+      <div class="dashboard-loading-content">
+        <span class="spinner spinner-primary" aria-hidden="true"></span>
+        <span>Loading municipal intelligence…</span>
+      </div>
+    </div>
+    <!-- Header Banner -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--dark); letter-spacing: -0.5px;">Municipal Priority & Incident Analytics</h2>
+        <p style="color: var(--gray-mid); font-size: 0.95rem;">Real-time civic intelligence aggregated across municipal jurisdictions.</p>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--gray-mid);">
+        Data Source: <strong style="color: var(--primary);">Google Cloud BigQuery</strong>
+        <span id="dashboardRefreshStatus" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+
+    <!-- 5 KPI Summary Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-icon-blue">📋</div>
+        <div class="kpi-info">
+          <h4>Total Complaints</h4>
+          <div class="kpi-val" id="kpiTotal">—</div>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-icon-orange">⚠️</div>
+        <div class="kpi-info">
+          <h4>High Priority</h4>
+          <div class="kpi-val" id="kpiHighPriority" style="color: #c53929;">—</div>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-icon-red">🚨</div>
+        <div class="kpi-info">
+          <h4>Critical Issues</h4>
+          <div class="kpi-val" id="kpiCritical" style="color: var(--danger);">—</div>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-icon-purple">📊</div>
+        <div class="kpi-info">
+          <h4>Avg Priority Score</h4>
+          <div class="kpi-val" id="kpiAvgPriority">—</div>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-icon-green">🏆</div>
+        <div class="kpi-info">
+          <h4>Top Civic Issue</h4>
+          <div class="kpi-val" id="kpiTopCategory" style="font-size: 1.25rem;">—</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-Column Analytics Breakdown -->
+    <div class="dashboard-grid">
+      <!-- Category Breakdown Card -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">📊 Complaints by Category</h3>
+          <span style="font-size: 0.8rem; color: var(--gray-mid);">Volume & % Share</span>
+        </div>
+        <div id="categoryProgressContainer">
+          <div style="text-align: center; padding: 2rem; color: var(--gray-mid);">Loading categories...</div>
+        </div>
+      </div>
+
+      <!-- Severity Distribution Card -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">⚡ Severity Distribution</h3>
+          <span style="font-size: 0.8rem; color: var(--gray-mid);">Urgency Breakdown</span>
+        </div>
+        <div id="severityContainer">
+          <div style="text-align: center; padding: 2rem; color: var(--gray-mid);">Loading severity data...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-Column Section: Hotspots & Department Workload -->
+    <div class="dashboard-grid">
+      <!-- Civic Hotspots Card -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">📍 Top Civic Hotspots</h3>
+          <span style="font-size: 0.8rem; color: var(--danger); font-weight: 600;">Repeated Incident Clusters</span>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Category</th>
+                <th>Complaints</th>
+                <th>Avg Priority</th>
+              </tr>
+            </thead>
+            <tbody id="hotspotsTableBody">
+              <tr><td colspan="4" style="text-align: center; color: var(--gray-mid);">Loading hotspots...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Department Workload Card -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">🏢 Municipal Department Workload</h3>
+          <span style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">Resource Routing</span>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Department</th>
+                <th>Assigned</th>
+                <th>Urgent</th>
+                <th>Avg Score</th>
+              </tr>
+            </thead>
+            <tbody id="departmentsTableBody">
+              <tr><td colspan="4" style="text-align: center; color: var(--gray-mid);">Loading department data...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- High Priority Action Table -->
+    <div class="card" style="margin-top: 1.5rem;">
+      <div class="card-header">
+        <div>
+          <h3 class="card-title">🎯 Priority Operational Action Queue</h3>
+          <p style="font-size: 0.85rem; color: var(--gray-mid); margin-top: 0.2rem;">Live municipal complaint queue sorted by priority score.</p>
+        </div>
+        <input
+          type="text"
+          id="complaintFilterInput"
+          placeholder="Filter by keyword or location..."
+          oninput="filterComplaintsTable()"
+          style="padding: 0.45rem 0.85rem; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); font-size: 0.85rem;"
+        >
+      </div>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Category</th>
+              <th>Severity</th>
+              <th>Location</th>
+              <th>Priority Score</th>
+              <th>Duplicates</th>
+              <th>Status</th>
+              <th>Created</th>
+            </tr>
+          </thead>
+          <tbody id="complaintsTableBody">
+            <tr><td colspan="8" style="text-align: center; color: var(--gray-mid);">Loading complaints queue...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Bottom Actions & Logout Section -->
+    <div class="card" style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; background: #fff;">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <div class="kpi-icon kpi-icon-blue" style="width: 40px; height: 40px; font-size: 1.25rem;">🔐</div>
+        <div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: var(--dark);">Active Municipal Officer Session</div>
+          <div style="font-size: 0.8rem; color: var(--gray-mid);">Signed in as <strong id="officerEmailBottom">admin@city.gov</strong> (City Operations Command)</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 0.75rem;">
+        <a href="index.html" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-secondary">Open Citizen Portal in New Tab ↗</a>
+        <button type="button" class="nav-btn" onclick="handleLogout()" aria-label="End municipal session" style="background: var(--danger-light); color: var(--danger); border: 1px solid #f5c6cb; font-weight: 700; cursor: pointer;">
+          🚪 Sign Out / Logout
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    CivicLens • Municipal Operations Dashboard
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Check authentication state on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuthStatus();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "civiclens",
+  "version": "1.0.0",
+  "description": "CivicLens - From Complaints to Civic Priorities",
+  "scripts": {
+    "start:dev": "npm --prefix backend run start:dev",
+    "build": "npm --prefix backend run build",
+    "start:prod": "npm --prefix backend run start:prod",
+    "seed": "npm --prefix backend run seed",
+    "seed:bq": "NODE_PATH=backend/node_modules node scripts/seed_bigquery.js"
+  }
+}

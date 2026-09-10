@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicLens — Turn Civic Complaints into Civic Action</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <a href="index.html" class="brand">
+      <div class="brand-icon">CL</div>
+      <div class="brand-text">
+        <h1>CivicLens</h1>
+        <span>AI-Powered Civic Intelligence</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-btn nav-btn-primary">Citizen Portal</a>
+      <a href="dashboard.html" target="_blank" rel="noopener noreferrer" class="nav-btn nav-btn-secondary">Municipal
+        Dashboard ↗</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Hero Header -->
+    <section class="hero">
+      <h2>Turn Civic Complaints Into Civic Action</h2>
+      <p>Submit your neighborhood issue. Our Vertex AI intelligence system categorizes, prioritizes, and routes
+        complaints directly to municipal teams in real-time.</p>
+    </section>
+
+    <!-- Main Citizen Portal 2-Column Grid -->
+    <div class="portal-grid">
+
+      <!-- Left Column: Complaint Submission Form -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">📝 Report a Civic Issue</h3>
+        </div>
+
+        <!-- Quick Demo Scenario Presets -->
+        <div class="form-group">
+          <label class="form-label">✨ Quick Demo Scenarios (1-Click Fill):</label>
+          <div class="pills-container">
+            <button type="button" class="pill-btn" onclick="fillScenario('garbage')">🗑️ Overflowing Garbage</button>
+            <button type="button" class="pill-btn" onclick="fillScenario('pothole')">🕳️ Dangerous School
+              Pothole</button>
+            <button type="button" class="pill-btn" onclick="fillScenario('light')">💡 Broken Streetlight</button>
+            <button type="button" class="pill-btn" onclick="fillScenario('water')">🚰 Main Pipe Burst</button>
+            <button type="button" class="pill-btn" onclick="fillScenario('drain')">🌊 Clogged Storm Drain</button>
+          </div>
+        </div>
+
+        <form id="complaintForm" onsubmit="handleComplaintSubmit(event)">
+          <!-- Description -->
+          <div class="form-group">
+            <label class="form-label" for="description">Complaint Description *</label>
+            <textarea id="description" name="description" class="form-control"
+              placeholder="Describe the issue in detail (e.g. Garbage overflowing near apartment for three days with foul smell...)"
+              required></textarea>
+          </div>
+
+          <!-- Photo Upload -->
+          <div class="form-group">
+            <label class="form-label">Upload Photo (Optional)</label>
+            <div class="file-dropzone" onclick="document.getElementById('imageFile').click()">
+              <input type="file" id="imageFile" name="image" accept="image/jpeg,image/png,image/webp"
+                onchange="handleFileSelected(event)">
+              <div style="font-size: 1.5rem;">📸</div>
+              <div style="font-size: 0.85rem; font-weight: 600; color: var(--gray-dark); margin-top: 0.3rem;">
+                Click to attach photo or drag & drop
+              </div>
+              <div style="font-size: 0.75rem; color: var(--gray-mid);">JPEG, PNG, WEBP (Max 5MB)</div>
+              <div id="filePreview" class="file-preview"></div>
+            </div>
+          </div>
+
+          <!-- Location Name -->
+          <div class="form-group">
+            <label class="form-label" for="locationName">Location / Landmark *</label>
+            <input type="text" id="locationName" name="locationName" class="form-control"
+              placeholder="e.g. Sector 15 Main Market, Near School Gate" required>
+          </div>
+
+          <!-- Coordinates -->
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="latitude">Latitude *</label>
+              <input type="number" step="any" id="latitude" name="latitude" class="form-control" placeholder="28.5355"
+                required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="longitude">Longitude *</label>
+              <input type="number" step="any" id="longitude" name="longitude" class="form-control" placeholder="77.3910"
+                required>
+            </div>
+          </div>
+
+          <!-- Affected People -->
+          <div class="form-group">
+            <label class="form-label" for="affectedPeople">Approx. Affected People</label>
+            <input type="number" id="affectedPeople" name="affectedPeople" class="form-control" placeholder="50" min="1"
+              value="50">
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="submitBtn" class="btn btn-primary">
+            <span>⚡ Analyze Complaint</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Column: Real-Time AI Intelligence Assessment Result -->
+      <div class="card" id="analysisCard">
+        <div class="card-header">
+          <h3 class="card-title">🤖 AI Intelligence Analysis</h3>
+          <span id="complaintStatusBadge" class="badge badge-low" style="display: none;">OPEN</span>
+        </div>
+
+        <!-- Initial Placeholder State -->
+        <div id="resultPlaceholder" class="result-placeholder">
+          <div class="result-placeholder-icon">🔍</div>
+          <h4>No Complaint Analyzed Yet</h4>
+          <p style="font-size: 0.85rem; margin-top: 0.5rem;">
+            Submit a complaint on the left or select a quick demo scenario to see Gemini AI multi-modal classification,
+            priority calculation, and duplicate detection in action.
+          </p>
+        </div>
+
+        <!-- Live Analysis Content (Hidden initially) -->
+        <div id="resultContent" style="display: none;">
+
+          <!-- Category, Severity, Department, Duplicates Grid -->
+          <div class="analysis-badge-grid">
+            <div class="badge-card">
+              <div class="badge-card-label">Category</div>
+              <div id="resCategory" class="badge-card-value" style="color: var(--primary);">—</div>
+            </div>
+            <div class="badge-card">
+              <div class="badge-card-label">Severity</div>
+              <div id="resSeverity" class="badge-card-value">—</div>
+            </div>
+            <div class="badge-card">
+              <div class="badge-card-label">Assigned Department</div>
+              <div id="resDepartment" class="badge-card-value" style="font-size: 0.95rem;">—</div>
+            </div>
+            <div class="badge-card">
+              <div class="badge-card-label">Nearby Duplicates</div>
+              <div id="resDuplicates" class="badge-card-value" style="color: #c53929;">0</div>
+            </div>
+          </div>
+
+          <!-- Priority Gauge Bar -->
+          <div class="priority-gauge-container">
+            <div class="priority-gauge-header">
+              <div>
+                <span
+                  style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--gray-mid);">Municipal
+                  Priority Score</span>
+                <div style="font-size: 0.75rem; color: var(--gray-mid);">Severity + Density + Recurrence + Sensitivity
+                </div>
+              </div>
+              <div id="resPriorityScore" class="priority-score-num">0/100</div>
+            </div>
+            <div class="priority-bar-bg">
+              <div id="resPriorityBar" class="priority-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- AI Summary -->
+          <div class="ai-summary-box">
+            <div class="ai-summary-title">
+              <span>💡</span> AI Executive Summary
+            </div>
+            <p id="resSummary" class="ai-summary-text">—</p>
+          </div>
+
+          <!-- AI Classification Reason -->
+          <div
+            style="background: #f8f9fa; border: 1px solid var(--gray-light); border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.25rem;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--gray-dark); margin-bottom: 0.25rem;">
+              Classification & Urgency Rationale:
+            </div>
+            <p id="resReason" style="font-size: 0.85rem; color: var(--gray-mid);">—</p>
+          </div>
+
+          <!-- Complaint ID & Status Footer -->
+          <div
+            style="display: flex; justify-content: space-between; align-items: center; padding-top: 0.75rem; border-top: 1px solid var(--gray-light); font-size: 0.8rem; color: var(--gray-mid);">
+            <div>Complaint ID: <strong id="resComplaintId" style="color: var(--dark);">—</strong></div>
+            <a href="dashboard.html" target="_blank" rel="noopener noreferrer"
+              style="color: var(--primary); font-weight: 600; text-decoration: none;">View in Municipal Dashboard ↗</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    CivicLens • AI Civic Intelligence Platform
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

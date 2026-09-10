@@ -1,0 +1,40 @@
+steps:
+  # 1. Build Container Image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/civiclens-api:$COMMIT_SHA'
+      - '-t'
+      - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/civiclens-api:latest'
+      - './backend'
+
+  # 2. Push Container Image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/civiclens-api:$COMMIT_SHA'
+
+  # 3. Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'civiclens-api'
+      - '--image=$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/civiclens-api:$COMMIT_SHA'
+      - '--region=$_LOCATION'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--set-env-vars=BIGQUERY_DATASET=civiclens,BIGQUERY_TABLE=complaints,GOOGLE_CLOUD_LOCATION=$_LOCATION'
+
+images:
+  - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/civiclens-api:$COMMIT_SHA'
+  - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPOSITORY/civiclens-api:latest'
+
+substitutions:
+  _LOCATION: 'us-central1'
+  _REPOSITORY: 'civiclens-repo'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
